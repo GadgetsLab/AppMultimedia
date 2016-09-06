@@ -4,7 +4,7 @@
 $dataDB = [
     'driver'    => 'mysql',
     'host'      => 'localhost',
-    'database'  => 'app',
+    'database'  => 'appmultimedia',
     'username'  => 'root',
     'password'  => '',
     'charset'   => 'utf8',
