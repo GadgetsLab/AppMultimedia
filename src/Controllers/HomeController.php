@@ -36,4 +36,11 @@ class HomeController extends Controller
 
         return view('home/contact', compact('title'));
     }
+
+    public function Fileup(){
+
+        $title = 'Subir Archivos';
+
+        return view('files/fileup', compact('title'));
+    }
 }

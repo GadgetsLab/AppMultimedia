@@ -22,7 +22,7 @@
         </nav>
         <nav>
             <ul id="actions">
-                <li><a href="<?= BASE_PUBLIC ?>/video/upload">Subir archivo</a></li>
+                <li><a href="<?= BASE_PUBLIC ?>/fileup">Subir archivo</a></li>
                 <li><a href="<?= BASE_PUBLIC ?>/users/1/videos">Mis videos</a></li>
                 <li><a href="<?= BASE_PUBLIC ?>/users/1/imagenes">Mis imagenes</a></li>
                 <li><a href="<?= BASE_PUBLIC ?>/users/1">Mi perfil</a></li>

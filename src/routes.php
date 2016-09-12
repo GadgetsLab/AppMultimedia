@@ -16,6 +16,7 @@ $app->group('', function() use ($app) {
     $this->get('/videos', $controller('videos'));
     $this->get('/images', $controller('images'));
     $this->get('/contact', $controller('contact'));
+    $this->get('/fileup', $controller('fileup'));
 });
 
 $app->get('/text', function () {
@@ -23,6 +24,12 @@ $app->get('/text', function () {
 });
 
 $app->post('/text', function ($request) use ($app){
+    /*
     $controller = new RDuuke\Newbie\Controllers\VideoController($app);
     $controller->Upload($request);
+    */
+
+    $controller = new RDuuke\Newbie\Controllers\FileController($app);
+    $controller->SaveFile($request);
+
 });

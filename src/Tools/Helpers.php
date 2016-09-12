@@ -1,9 +1,38 @@
 <?php
-/**
- *function view, renders a view and the layout select.
- *
- * @param array $parameters
- */
+
+/*
+function formatType($format){ //cambiar por formatInfo($format,$nameFile)
+
+    $fr = RDuuke\Newbie\Format::all();
+
+    foreach($fr as $f){
+        if($f->name == $format){
+            return $f->id; // return $info = ['id' => $f->id, 'saveIn' => RESOURCE.$f->type.$nameFile ];
+
+        }
+    }
+
+    return false;
+
+}
+*/
+
+function formatInfo($iduser, $format, $nameFile){ //cambiar por formatInfo($format,$nameFile)
+
+    $fr = RDuuke\Newbie\Format::where('name',$format)->first();
+
+    if($fr != null){
+
+            $info = ['id_format' => $fr->id, 'saveIn' => RESOURCE.$iduser.DS.$fr->type.'s'.DS.$nameFile];
+            return $info; // return $info = ['id' => $f->id, 'saveIn' => RESOURCE.$f->type.$nameFile ];
+
+        }
+
+
+    return false;
+
+}
+
 function view($template, $parameters = [])
 {
     $tmpl = new \League\Plates\Engine('..\resource\views', 'tpl.php');

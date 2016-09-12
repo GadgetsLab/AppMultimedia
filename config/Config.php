@@ -4,7 +4,7 @@
 $dataDB = [
     'driver'    => 'mysql',
     'host'      => 'localhost',
-    'database'  => 'app',
+    'database'  => 'appmultimedia',
     'username'  => 'root',
     'password'  => '',
     'charset'   => 'utf8',
@@ -13,5 +13,5 @@ $dataDB = [
 ];
 
 /* Configuration URL*/
-define('BASE_URL', 'http://localhost:8080/AppMultimedia');
-define('BASE_PUBLIC', 'http://localhost:8080/AppMultimedia/public');
+define('BASE_URL', 'http://localhost/AppMultimedia');
+define('BASE_PUBLIC', 'http://localhost/AppMultimedia/public');

@@ -24,7 +24,7 @@ class VideoController extends Controller
 
         if ($this->newFile->getError() === UPLOAD_ERR_OK) {
 
-            $this->uploadNameFile = $this->newFile->getClientFilename();
+            $this->uploadN3ameFile = $this->newFile->getClientFilename();
             $this->newFile->moveTo(ROOT .'../resource/'.$this->uploadNameFile);
 
         }
