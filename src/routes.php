@@ -23,6 +23,18 @@ $app->get('/text', function () {
     return view('video/upload');
 });
 
+$app->group('/admin/users', function () use ($app) {
+    $controller = new RDuuke\Newbie\Controllers\UserController($app);
+
+    $this->get('', $controller('index'));
+    $this->get('/create', $controller('create'));
+    $this->post('', $controller('store'));
+    $this->get('/{id}', $controller('show'));
+    $this->get('/{id}/edit', $controller('edit'));
+    $this->put('/{id}', $controller('update'));
+    $this->get('/{id}/destroy', $controller('destroy'));
+
+});
 $app->post('/text', function ($request) use ($app){
     /*
     $controller = new RDuuke\Newbie\Controllers\VideoController($app);
