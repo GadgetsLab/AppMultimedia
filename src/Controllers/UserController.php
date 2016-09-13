@@ -30,8 +30,8 @@ class UserController extends Controller implements ResourceController
 
     public function Edit($id)
     {
-       $user = User::find($id);
-
+        $user = User::find($id);
+        
         return view('admin/users/edit', compact('user'));
     }
 
@@ -46,12 +46,15 @@ class UserController extends Controller implements ResourceController
 
     public function Update($id)
     {
-        $user = User::find($id);
-        $request = self::getPost();
+        $user = User::findOrFail($id);
+        $user->fill(self::getPost());
+        $user->save();
+
     }
 
     public function Destroy($id)
     {
-        // TODO: Implement Destroy() method.
+        $user = User::findorFail($id);
+        $user->delete();
     }
 }
