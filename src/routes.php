@@ -1,13 +1,34 @@
 <?php
 
-$configuration = [
-    'settings' => [
-        'displayErrorDetails' => true,
-    ],
-];
-$c = new \Slim\Container($configuration);
-$app = new \Slim\App($c);
+use Zeuxisoo\Whoops\Provider\Slim\WhoopsMiddleware;
+use Slim\App;
 
+$app = new App([
+    'settings' => [
+        'debug'               => true,      // On/Off whoops error
+        'whoops.editor'       => 'sublime',
+        'displayErrorDetails' => true     // Display call stack in orignal slim error when debug is off
+    ]
+]);
+
+if ($app->getContainer()->settings['debug'] === false) {
+    $container['errorHandler'] = function ($c) {
+        return function ($request, $response, $exception) use ($c) {
+            $data = [
+                'code' => $exception->getCode(),
+                'message' => $exception->getMessage(),
+                'file' => $exception->getFile(),
+                'line' => $exception->getLine(),
+                'trace' => explode("\n", $exception->getTraceAsString()),
+            ];
+            return $c->get('response')->withStatus(500)
+                ->withHeader('Content-Type', 'application/json')
+                ->write(json_encode($data));
+        };
+    };
+}else{
+    $app->add(new WhoopsMiddleware);
+}
 //$app->get('', 'RDuuke\Newbie\Controllers\BaseController:Index');
 
 $app->group('', function() use ($app) {
@@ -19,12 +40,13 @@ $app->group('', function() use ($app) {
     $this->get('/fileup', $controller('fileup'));
 });
 
-$app->get('/text', function () {
+/*$app->get('/text', function () {
     return view('video/upload');
 });
+*/
 
 $app->group('/admin/users', function () use ($app) {
-    $controller = new RDuuke\Newbie\Controllers\UserController($app);
+    $controller = new RDuuke\Newbie\Controllers\Base\UserBaseController($app);
 
     $this->get('', $controller('index'));
     $this->get('/create', $controller('create'));
@@ -33,6 +55,18 @@ $app->group('/admin/users', function () use ($app) {
     $this->get('/{id}/edit', $controller('edit'));
     $this->put('/{id}', $controller('update'));
     $this->get('/{id}/destroy', $controller('destroy'));
+
+});
+$app->group('/web/users', function () use ($app) {
+    $controller = new RDuuke\Newbie\Controllers\UserController($app);
+
+    $this->get('/{id}', $controller('index'));
+  //  $this->get('/create', $controller('create'));
+    //$this->post('', $controller('store'));
+   // $this->get('/{id}', $controller('show'));
+    //$this->get('/{id}/edit', $controller('edit'));
+    //$this->put('/{id}', $controller('update'));
+   // $this->get('/{id}/destroy', $controller('destroy'));
 
 });
 $app->group('/admin/files', function () use ($app){
@@ -70,17 +104,20 @@ $app->group('/admin/files', function () use ($app){
     });
 
 });
+
+/*
 $app->post('/text', function ($request) use ($app){
     /*
     $controller = new RDuuke\Newbie\Controllers\VideoController($app);
     $controller->Upload($request);
-    */
+
 
     $controller = new RDuuke\Newbie\Controllers\FileController($app);
     $controller->SaveFile($request);
 
 });
-
+*/
+/*
 $app->group('/user', function() use($app){
     $controller = new RDuuke\Newbie\Controllers\FileController($app);
     $this->get('', $controller('index'));
@@ -95,3 +132,4 @@ $app->group('/user', function() use($app){
 
 
 
+*/

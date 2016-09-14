@@ -2,10 +2,9 @@
 namespace RDuuke\Newbie\Controllers\Base;
 
 use MartynBiz\Slim3Controller\Controller;
-use RDuuke\Newbie\Contracts\Controller\ResourceController;
 use RDuuke\Newbie\User;
 
-class UserBaseController extends Controller implements ResourceController
+class UserBaseController extends Controller
 {
 
     public function Index()
@@ -47,10 +46,13 @@ class UserBaseController extends Controller implements ResourceController
     {
         $user = User::find($id);
         $request = self::getPost();
+        $user->fill($request);
+        $user->save();
     }
 
     public function Destroy($id)
     {
-        // TODO: Implement Destroy() method.
+        $user = User::find($id);
+        $user->delete();
     }
 }

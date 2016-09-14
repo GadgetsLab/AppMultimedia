@@ -13,10 +13,9 @@
   ],
   "require": {
     "illuminate/database": "^5.3",
-    "filp/whoops": "^2.1",
     "league/plates": "^3.1",
     "php": ">=5.5.9",
-    "slim/slim": "^3.0",
+    "zeuxisoo/slim-whoops": "0.5.*",
     "martynbiz/slim3-controller": "^0.0.0"
   },
   "autoload":{
