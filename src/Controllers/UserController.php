@@ -8,5 +8,5 @@ use RDuuke\Newbie\User;
 
 class UserController extends UserBaseController
 {
-
+    
 }
