@@ -35,6 +35,41 @@ $app->group('/admin/users', function () use ($app) {
     $this->get('/{id}/destroy', $controller('destroy'));
 
 });
+$app->group('/admin/files', function () use ($app){
+    $this->get('', function(){
+        $controller = new RDuuke\Newbie\Controllers\FileController();
+        $controller->Index();
+
+    });
+    $this->get('/create', function() use ($app){
+        $controller = new RDuuke\Newbie\Controllers\FileController($app);
+        $controller->Create();
+    });
+    //$this->get('/create', $controller('create'));
+    $this->post('', function($request) use ($app) {
+        $controller = new RDuuke\Newbie\Controllers\FileController($app);
+        $controller->Store($request);
+    });
+    $this->get('/{id}', function($id){
+        $controller = new RDuuke\Newbie\Controllers\FileController();
+        $controller->Show($id);
+    });
+    $this->get('/{id}/edit', function($request) use ($app){
+        $id = $request->
+        $controller = new RDuuke\Newbie\Controllers\FileController($app);
+        $controller->Edit($id);
+    });
+    $this->put('/{id}', function($id){
+        $controller = new RDuuke\Newbie\Controllers\FileController();
+        $controller->Update($id);
+    });
+    $this->get('/{id}/destroy', function(\Slim\Http\Request $request) use ($app){
+        $id = $request->getAttribute('id');
+        $controller = new RDuuke\Newbie\Controllers\FileController($app);
+        $controller->Destroy($id);
+    });
+
+});
 $app->post('/text', function ($request) use ($app){
     /*
     $controller = new RDuuke\Newbie\Controllers\VideoController($app);
@@ -45,3 +80,18 @@ $app->post('/text', function ($request) use ($app){
     $controller->SaveFile($request);
 
 });
+
+$app->group('/user', function() use($app){
+    $controller = new RDuuke\Newbie\Controllers\FileController($app);
+    $this->get('', $controller('index'));
+    $this->get('/create', $controller('create'));
+    $this->post('', $controller('store'));
+    $this->get('/{id}', $controller('show'));
+    $this->get('/{id}/edit', $controller('edit'));
+    $this->put('/{id}', $controller('update'));
+    $this->get('/{id}/destroy', $controller('destroy'));
+    $this->post('/saveFile', $controller('SaveFile'));
+});
+
+
+

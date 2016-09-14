@@ -23,7 +23,9 @@ function formatInfo($iduser, $format, $nameFile){ //cambiar por formatInfo($form
 
     if($fr != null){
 
-            $info = ['id_format' => $fr->id, 'saveIn' => RESOURCE.$iduser.DS.$fr->type.'s'.DS.$nameFile];
+            $info = ['id_format' => $fr->id,
+                'MoveTo' => RESOURCE.$iduser.DS.$fr->type.'s'.DS.date('D-M-Y_h_s').'_'.$nameFile,
+                'saveIn' => $iduser.DS.$fr->type.'s'.DS.date('D-M-Y_h_s').'_'.$nameFile];
             return $info; // return $info = ['id' => $f->id, 'saveIn' => RESOURCE.$f->type.$nameFile ];
 
         }
