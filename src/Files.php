@@ -13,4 +13,8 @@ class Files extends Model{
     protected $table="files";
     protected $fillable = ['title', 'description', 'url', 'id_format', 'id_user', 'id_materia'];
 
+    public function format()
+    {
+        return $this->belongsTo('RDuuke\Newbie\Format');
+    }
 }

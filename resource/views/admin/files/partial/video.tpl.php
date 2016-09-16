@@ -1,0 +1,1 @@
+<video src="<?= $this->e(BASE_URL.$file->url) ?>"></video>

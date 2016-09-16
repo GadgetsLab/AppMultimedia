@@ -70,8 +70,8 @@ $app->group('/web/users', function () use ($app) {
 
 });
 $app->group('/admin/files', function () use ($app){
-    $this->get('', function(){
-        $controller = new RDuuke\Newbie\Controllers\FileController();
+    $this->get('', function() use ($app){
+        $controller = new RDuuke\Newbie\Controllers\FileController($app);
         $controller->Index();
 
     });
@@ -84,18 +84,20 @@ $app->group('/admin/files', function () use ($app){
         $controller = new RDuuke\Newbie\Controllers\FileController($app);
         $controller->Store($request);
     });
-    $this->get('/{id}', function($id){
-        $controller = new RDuuke\Newbie\Controllers\FileController();
+    $this->get('/{id}', function($request) use ($app){
+        $id = $request->getAttribute('id');
+        $controller = new RDuuke\Newbie\Controllers\FileController($app);
         $controller->Show($id);
     });
     $this->get('/{id}/edit', function($request) use ($app){
-        $id = $request->
+        $id = $request->getAttribute('id');
         $controller = new RDuuke\Newbie\Controllers\FileController($app);
         $controller->Edit($id);
     });
-    $this->put('/{id}', function($id){
-        $controller = new RDuuke\Newbie\Controllers\FileController();
-        $controller->Update($id);
+    $this->post('/{id}', function($request) use ($app){
+        $id = $request->getAttribute('id');
+        $controller = new RDuuke\Newbie\Controllers\FileController($app);
+        $controller->Update($id, $request);
     });
     $this->get('/{id}/destroy', function(\Slim\Http\Request $request) use ($app){
         $id = $request->getAttribute('id');

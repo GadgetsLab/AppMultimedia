@@ -19,28 +19,28 @@ class FileBaseController extends Controller
 
     public function Index()
     {
-        $users = User::all();
+        $files = Files::all();
 
-        return view('admin/users/index', compact('users'));
+        return view('admin/files/index', compact('files'));
     }
 
     public function Create()
     {
-        return view('files/create');
+        return view('admin/files/create');
     }
 
     public function Show($id)
     {
-        $user = User::find($id);
+        $file = Files::find($id);
+        return view('admin/files/show', compact('file'));
 
-        return view('admin/users/show', compact('user'));
     }
 
     public function Edit($id)
     {
-        $user = User::find($id);
+        $file = Files::find($id);
 
-        return view('admin/users/edit', compact('user'));
+        return view('admin/files/edit', compact('file'));
     }
 
     public function Store($request)
@@ -93,10 +93,45 @@ class FileBaseController extends Controller
         return view('files/result', compact('name'));
     }
 
-    public function Update($id)
+    public function Update($id, $request)
     {
-        $user = User::find($id);
-        $request = self::getPost();
+        //self::setRequest($request);
+        //$data = $this->request->getParsedBody();
+        //echo "<pre>";
+        //print_r($data);
+
+        self::setRequest($request);
+        $data = self::getPost();
+        $f = $this->request->getUploadedFiles();
+        $file_client = $f['user_file'];
+        //print_r($file_client->getClientFileName());
+        //die();
+        $file = Files::find($id);
+        $file->title = $data['title_file'];
+        $file->description = $data['description'];
+        $v = validateFile($file_client);
+        if ($v != false) {
+            try{
+
+                //unlink(RESOURCE.$file->url);
+                $path = formatInfo(1, $v['format'],$file_client->getClientFileName());
+                if($path === false){
+                    return false;
+                }
+                $file->url = $path['saveIn'];
+                $file->format_id = $path['id_format'];
+                $f['user_file']->moveTo($path['MoveTo']);
+            }
+            catch(\Exception $e){
+                echo '<pre>';
+                printf($e);
+            }
+        }
+        $file->save();
+
+        return view('admin/files/result');
+
+
     }
 
     public function Destroy($id)

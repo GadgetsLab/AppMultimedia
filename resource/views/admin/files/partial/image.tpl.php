@@ -1,0 +1,1 @@
+<img src="<?= $this->e(BASE_URL.'/resource/'.$file->url); ?>" alt="">

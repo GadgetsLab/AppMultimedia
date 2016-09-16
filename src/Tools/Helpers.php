@@ -16,6 +16,15 @@ function formatType($format){ //cambiar por formatInfo($format,$nameFile)
 
 }
 */
+function validateFile($file)
+{
+    if($file->getError() === UPLOAD_ERR_OK){
+        $format = end(explode('.', $file->getClientFileName()));
+        $result = ['format'=> $format];
+        return $result;
+    }
+        return false;
+}
 
 function formatInfo($iduser, $format, $nameFile){ //cambiar por formatInfo($format,$nameFile)
 
