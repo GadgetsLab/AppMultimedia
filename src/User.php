@@ -20,4 +20,9 @@ class User extends Model
             $this->attributes['password'] = md5($valor);
         }
     }
+
+    public function getFullNameAttribute()
+    {
+        return $this->names . ' ' . $this->last_names;
     }
+}

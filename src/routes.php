@@ -60,8 +60,8 @@ $app->group('/admin/users', function () use ($app) {
 $app->group('/web/users', function () use ($app) {
     $controller = new RDuuke\Newbie\Controllers\UserController($app);
 
-    $this->get('/{id}', $controller('index'));
-  //  $this->get('/create', $controller('create'));
+    $this->get('', $controller('log'));
+    $this->get('/create', $controller('test'));
     //$this->post('', $controller('store'));
    // $this->get('/{id}', $controller('show'));
     //$this->get('/{id}/edit', $controller('edit'));

@@ -19,8 +19,11 @@ class LoginService
 
     public function login(Auth $auth, array $input)
     {
-        list($name, $data) = $this->adapter->login($input);
-        $this->forceLogin($auth, $name, $data);
+        $data = $this->adapter->login($input);
+        if (! $data){
+            return false;
+        }
+        $this->forceLogin($auth, $data['username'], $data);
     }
 
     public function forceLogin(

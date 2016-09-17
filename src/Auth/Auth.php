@@ -2,9 +2,6 @@
 
 namespace RDuuke\Newbie\Auth;
 
-
-use RDuuke\Newbie\User;
-
 class Auth
 {
 
@@ -78,6 +75,7 @@ class Auth
     {
         return $this->segment->get('last_active');
     }
+    
   
     public function setUserName($username)
     {

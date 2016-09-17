@@ -1,3 +1,6 @@
-/**
- * Created by RDuuke on 30/12/2015.
- */
+
+$(document).ready(function() {
+    $(".button-collapse").sideNav();
+
+    $('select').material_select();
+});

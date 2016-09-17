@@ -45,4 +45,34 @@ class AuthFactory
         }
         return $adapter;
     }
+
+    public function newLogoutService(Adapter $adapter = null)
+    {
+        return new LogoutService(
+            $this->session
+        );
+    }
+
+    public function newResumeService(
+        Adapter $adapter = null,
+        $idle_ttl = 1440,
+        $expire_ttl = 14400
+    ) {
+        $adapter = $this->fixAdapter($adapter);
+        $timer = new Timer(
+            ini_get('session.gc_maxlifetime'),
+            ini_get('session.cookie_lifetime'),
+            $idle_ttl,
+            $expire_ttl
+        );
+        $logout_service = new LogoutService(
+            $this->session
+        );
+        return new ResumeService(
+            $adapter,
+            $this->session,
+            $timer,
+            $logout_service
+        );
+    }
 }
