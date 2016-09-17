@@ -1,6 +1,6 @@
 .idea
 /vendor/
-config
+config/Config.php
 
 # Created by https://www.gitignore.io/api/phpstorm
 
