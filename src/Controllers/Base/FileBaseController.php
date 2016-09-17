@@ -144,6 +144,14 @@ class FileBaseController extends Controller
         return false;
         // TODO: Implement Destroy() method.
     }
+
+    public function Download($id,$dr, $filename)
+    {
+        $path = BASE_URL.'resource'.DS.$id.DS.$dr.DS.$filename;
+        header("Content-disposition: attachment; filename= '.$filename.''");
+        header("Content-type: MIME");
+        readfile($path);
+    }
 /*
     public function SaveFile($request)
     {
