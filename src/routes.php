@@ -104,6 +104,14 @@ $app->group('/admin/files', function () use ($app){
         $controller = new RDuuke\Newbie\Controllers\FileController($app);
         $controller->Destroy($id);
     });
+    $this->get('/download/{id}/{dr}/{filename}', function($request) use($app){
+        $id = $request->getAttribute('id');
+        $dr = $request->getAttribute('dr');
+        $filename = $request->getAttribute('filename');
+        $controller = new RDuuke\Newbie\Controllers\FileController($app);
+        $controller->Download($id,$dr,$filename);
+    });
+
 
 });
 

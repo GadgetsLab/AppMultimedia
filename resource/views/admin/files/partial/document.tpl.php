@@ -1,0 +1,1 @@
+<a href="download/<?= $file->url?>">Descargar documento</a>
