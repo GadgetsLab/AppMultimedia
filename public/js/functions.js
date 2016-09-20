@@ -28,13 +28,15 @@ var functions = {
                     console.log(response);
                 }
                 else{
-                    console.log(response);
+                    $('#files').html('');
+                    //console.log(response[0]['title']);
+                    //console.log(typeof(response));
                      for(var i in response) {
-                     /*
-                     $('#files').append("<li><h3>"+response[i]['title']+"</h3>" +
-                     "<p>'Descripcion:'"+ response[i]['description'] +"</p>" +
-                     "<p>'Tipo:'"+ formats[format] +"</p></li>");
-                     */
+                     $('#files').append("<li>" +
+                         "<h3><a href='"+route+"admin/files/"+response[i]['id']+"'>"+response[i]['title']+"</a></h3>" +
+                     "<p>Descripcion:"+ response[i]['description'] +"</p>" +
+                     "<p>Tipo:"+ formats[format] +"</p></li>");
+
                      }
 
                 }

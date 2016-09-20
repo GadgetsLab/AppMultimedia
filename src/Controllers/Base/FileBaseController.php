@@ -145,20 +145,23 @@ class FileBaseController extends Controller
         // TODO: Implement Destroy() method.
     }
 
-    public function FilterResult($typeFile, $limit)
+    public function FilterResult($typeFile, $limit, $oldResponse)
     {
         //$files = Files::whereBetween('format_id', array($typeFile, $limit))->get();
         //header("Content-type:application/json");
         //echo json_encode($files);
-
         $files = filter($typeFile, $limit);
         if(! $files) {
             echo "0";
             return false;
         }
         header("Content-type:appliaction/json");
-        echo json_encode($files);
-        return true;
+        echo $files->toJson();
+        die();
+        //echo json_encode($files);
+         //$newresponse = $oldResponse->withHeader('Content-type','application/json');
+       // $newresponse->withJson($files);
+        //return $newresponse;
 
 
     }
