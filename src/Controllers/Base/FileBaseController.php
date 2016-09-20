@@ -145,12 +145,22 @@ class FileBaseController extends Controller
         // TODO: Implement Destroy() method.
     }
 
-    public function Download($id,$dr, $filename)
+    public function FilterResult($typeFile, $limit)
     {
-        $path = BASE_URL.'resource'.DS.$id.DS.$dr.DS.$filename;
-        header("Content-disposition: attachment; filename= '.$filename.''");
-        header("Content-type: MIME");
-        readfile($path);
+        //$files = Files::whereBetween('format_id', array($typeFile, $limit))->get();
+        //header("Content-type:application/json");
+        //echo json_encode($files);
+
+        $files = filter($typeFile, $limit);
+        if(! $files) {
+            echo "0";
+            return false;
+        }
+        header("Content-type:appliaction/json");
+        echo json_encode($files);
+        return true;
+
+
     }
 /*
     public function SaveFile($request)

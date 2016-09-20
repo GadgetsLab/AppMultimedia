@@ -1,1 +1,1 @@
-<a href="download/<?= $file->url?>">Descargar documento</a>
+<a href="<?=BASE_URL.DS.'resource'.DS.$file->url?>" download>Descargar documento</a>

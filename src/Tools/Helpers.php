@@ -44,6 +44,15 @@ function formatInfo($iduser, $format, $nameFile){ //cambiar por formatInfo($form
 
 }
 
+function filter($startlimit, $endlimit)
+{
+   $fls = RDuuke\Newbie\Files::whereBetween('format_id', array($startlimit, $endlimit))->get();
+
+    return $fls;
+
+
+}
+
 function view($template, $parameters = [])
 {
     $tmpl = new \League\Plates\Engine('..\resource\views', 'tpl.php');
