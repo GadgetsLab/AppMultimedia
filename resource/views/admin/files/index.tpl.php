@@ -1,3 +1,4 @@
+<?php $this->layout('layout/base'); ?>
 <h1>Archivos</h1>
 
 <select name="" id="">

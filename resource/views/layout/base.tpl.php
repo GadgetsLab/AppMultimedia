@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
@@ -36,7 +36,7 @@
     </nav>
 </div>
 <div class="container">
-<?= $this->section('content')?>
+<?= utf8_encode($this->section('content'))?>
 </div>
 <?php script('js/jquery.min.js')?>
 <?php script('js/materialize.min.js')?>

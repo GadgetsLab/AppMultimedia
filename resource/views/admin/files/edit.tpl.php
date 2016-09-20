@@ -1,3 +1,4 @@
+<?php $this->layout('layout/base'); ?>
 <form action="<?= BASE_PUBLIC ?>/admin/files/<?= $file->id ?>" method="post" enctype="multipart/form-data" >
     <label for="title_file">Título del Archivo</label>
     <input type="text" value="<?= $file->title?>" name="title_file" required></br></br>
