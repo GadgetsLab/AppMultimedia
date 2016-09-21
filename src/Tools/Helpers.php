@@ -1,21 +1,15 @@
 <?php
 
-/*
-function formatType($format){ //cambiar por formatInfo($format,$nameFile)
+function allFiles()
+{
+    $all = \RDuuke\Newbie\File::join('formats', 'files.format_id','=','formats.id')
+                            ->join('types','formats.type_id','=','types.id')
+                            ->select('files.id', 'files.title', 'files.description', 'files.url','types.type')
+                            ->get();
 
-    $fr = RDuuke\Newbie\Format::all();
-
-    foreach($fr as $f){
-        if($f->name == $format){
-            return $f->id; // return $info = ['id' => $f->id, 'saveIn' => RESOURCE.$f->type.$nameFile ];
-
-        }
-    }
-
-    return false;
+    return $all;
 
 }
-*/
 function validateFile($file)
 {
     if($file->getError() === UPLOAD_ERR_OK){
@@ -23,30 +17,42 @@ function validateFile($file)
         $result = ['format'=> $format];
         return $result;
     }
-        return false;
+    return false;
 }
 
 function formatInfo($iduser, $format, $nameFile){ //cambiar por formatInfo($format,$nameFile)
 
+    //$fr = RDuuke\Newbie\Format::find(1);
     $fr = RDuuke\Newbie\Format::where('name',$format)->first();
+    $tp = RDuuke\Newbie\Type::find(''.$fr->type_id.'');
 
     if($fr != null){
 
-            $info = ['id_format' => $fr->id,
-                'MoveTo' => RESOURCE.$iduser.DS.$fr->type.'s'.DS.date('D-M-Y_h_s').'_'.$nameFile,
-                'saveIn' => $iduser.DS.$fr->type.'s'.DS.date('D-M-Y_h_s').'_'.$nameFile];
-            return $info; // return $info = ['id' => $f->id, 'saveIn' => RESOURCE.$f->type.$nameFile ];
+        $info = ['id_format' => $fr->id,
+            'MoveTo' => RESOURCE.$iduser.DS.$tp->type.'s'.DS.date('D-M-Y_h_s').'_'.$nameFile,
+            'saveIn' => $iduser.DS.$tp->type.'s'.DS.date('D-M-Y_h_s').'_'.$nameFile];
+        return $info; // return $info = ['id' => $f->id, 'saveIn' => RESOURCE.$f->type.$nameFile ];
 
-        }
+    }
 
 
     return false;
 
 }
 
-function filter($startlimit, $endlimit)
+function filter($type)
 {
-   $fls = RDuuke\Newbie\Files::whereBetween('format_id', array($startlimit, $endlimit))->get();
+
+    if($type == 0) {
+        $fls = allFiles();
+    }
+    else{
+        $fls = \RDuuke\Newbie\File::join('formats','files.format_id', '=', 'formats.id' )
+            ->join('types','formats.type_id','=','types.id')
+            ->select('files.id', 'files.title', 'files.description', 'files.url', 'types.type')
+            ->where('formats.type_id',$type)
+            ->get();
+    }
 
     return $fls;
 

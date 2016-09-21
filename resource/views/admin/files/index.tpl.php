@@ -13,7 +13,8 @@
         <li>
             <h3><?php route('admin/files/',$file->title,$file->id) ?></h3>
             <p>Description: <?= $this->e($file->description) ?></p>
-            <p>Tipo: <?= $this->e($file->format->type)?></p>
+            <p>Tipo: <?= $this->e($file->type)?></p>
+            <!--<p><?php //route('admin/files/','Eliminar archivo',$file->id) ?></p>-->
         </li>
     <?php endforeach?>
 </ul>

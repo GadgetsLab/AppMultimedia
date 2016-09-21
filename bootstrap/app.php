@@ -6,6 +6,7 @@ require_once '../src/Tools/Helpers.php';
 
 use Illuminate\Database\Capsule\Manager as Capsule;
 
+global $capsule;
 $capsule = new Capsule();
 $capsule->addConnection($dataDB);
 $capsule->bootEloquent();
