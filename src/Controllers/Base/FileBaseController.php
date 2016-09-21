@@ -57,7 +57,7 @@ class FileBaseController extends Controller
         //$this->request->getUploadedFiles();
         $files = $this->request->getUploadedFiles();
         $this->file = $files['user_file'];
-        if($this->file->getError() === UPLOAD_ERR_OK){
+        if($this->file->getError() == UPLOAD_ERR_OK){
             $format = end(explode('.', $this->file->getClientFileName()));
             //$validateFormat = formatType($format); //$validateFormat = formatInfo($format, $this->file->getClientFileName)
             $validateFormat = formatInfo('1',$format, $this->file->getClientFileName());

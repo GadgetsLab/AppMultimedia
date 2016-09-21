@@ -34,7 +34,7 @@ if ($app->getContainer()->settings['debug'] === false) {
 $app->group('', function() use ($app) {
     $controller = new RDuuke\Newbie\Controllers\HomeController($app);
     $this->get('/', $controller('index'));
-    $this->get('/videos', $controller('videos'));
+    $this->get('/item', $controller('videos'));
     $this->get('/images', $controller('images'));
     $this->get('/contact', $controller('contact'));
     $this->get('/fileup', $controller('fileup'));
