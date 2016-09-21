@@ -75,7 +75,6 @@ class FileBaseController extends Controller
                     $fr->save();
 
                     echo 'Se guardo';
-                    die();
                 }
                 else{
                     throw new \Exception('Invalid Format');
