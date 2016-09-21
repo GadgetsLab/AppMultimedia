@@ -19,7 +19,7 @@ class HomeController extends Controller
     {
         $title = 'All videos';
         
-        return view('home/videos', compact('title'));
+        return view('home/item', compact('title'));
 
     }
     

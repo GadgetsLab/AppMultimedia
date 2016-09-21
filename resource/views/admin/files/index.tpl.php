@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <?php $this->layout('layout/baseAdmin'); ?>
+=======
+<?php $this->layout('layout/base'); ?>
+>>>>>>> d354018317d5f8faac7490ad7d89fc988051678a
 <h1>Archivos</h1>
 <select name="format" id="type">
     <option value="" selected disabled>Filtrar por tipos</option>
