@@ -36,10 +36,12 @@
     </nav>
 </div>
 <div class="container">
-<?= utf8_encode($this->section('content'))?>
+<?= $this->section('content')?>
 </div>
 <?php script('js/jquery.min.js')?>
 <?php script('js/materialize.min.js')?>
+<?php script('js/files_filter.js');?>
+<?php script('js/functions.js');?>
 <?php script('js/template.js'); ?>
 </body>
 </html>
