@@ -61,9 +61,9 @@ class FileBaseController extends Controller
             $format = end(explode('.', $this->file->getClientFileName()));
             //$validateFormat = formatType($format); //$validateFormat = formatInfo($format, $this->file->getClientFileName)
             $validateFormat = formatInfo('1',$format, $this->file->getClientFileName());
-            //echo '<pre>';
-            //print_r($validateFormat);
-            //die();
+            // echo '<pre>';
+            // print_r($validateFormat);
+            // die();
             try{
 
                 if ($validateFormat != false) {
@@ -77,12 +77,17 @@ class FileBaseController extends Controller
                     $fr->description = $data['description'];
                     $fr->url = $validateFormat['saveIn'];//$this->file->getClientFileName();
                     $fr->format_id = $validateFormat['id_format'];
-                    $fr->user_id = 2;
+                    $fr->user_id = 1;
                     $fr->materia_id = 1;
                     $fr->save();
 
+<<<<<<< HEAD
                     return self::Index();
 
+=======
+                    echo 'Se guardo';
+                    return view('admin/files/index');
+>>>>>>> 8d6b5122a156ef098458f8c2b6ff14927e9bb595
                 }
                 else{
                     throw new \Exception('Invalid Format');
