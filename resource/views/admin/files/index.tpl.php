@@ -1,4 +1,3 @@
-
 <?php $this->layout('layout/base'); ?>
 <h1>Archivos</h1>
 <select name="format" id="type" class="browser-default">
