@@ -81,7 +81,7 @@ class FileBaseController extends Controller
                     $fr->materia_id = 1;
                     $fr->save();
 
-                    return view('admin/files/index');
+                    return self::Index();
 
                 }
                 else{

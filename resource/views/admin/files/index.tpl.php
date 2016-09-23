@@ -1,10 +1,6 @@
-<<<<<<< HEAD
 <?php $this->layout('layout/base'); ?>
-=======
-<?php $this->layout('layout/baseAdmin'); ?>
->>>>>>> b9f9b85a3c6c2b8a907ce4f37030e0c8b21821ec
 <h1>Archivos</h1>
-<select name="format" id="type">
+<select name="format" id="type" class="browser-default">
     <option value="" selected disabled>Filtrar por tipos</option>
     <option value="0">Todos</option>
     <option value="1">Videos</option>

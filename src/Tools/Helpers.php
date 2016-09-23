@@ -24,6 +24,7 @@ function formatInfo($iduser, $format, $nameFile){ //cambiar por formatInfo($form
 
     //$fr = RDuuke\Newbie\Format::find(1);
     $fr = RDuuke\Newbie\Format::where('name',$format)->first();
+
     $tp = RDuuke\Newbie\Type::find(''.$fr->type_id.'');
 
     if($fr != null){

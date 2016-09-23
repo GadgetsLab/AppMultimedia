@@ -103,7 +103,7 @@ $app->group('/admin/files', function () use ($app){
         $id = $request->getAttribute('id');
         $controller = new RDuuke\Newbie\Controllers\FileController($app);
         $controller->Destroy($id);
-    });
+    }); 
     $this->get('/filter/{id}', function($request) use($app){
         $id = $request->getAttribute('id');
         $controller = new RDuuke\Newbie\Controllers\FileController($app);
