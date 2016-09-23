@@ -10,7 +10,8 @@ namespace RDuuke\Newbie\Controllers\Base;
 
 
 use MartynBiz\Slim3Controller\Controller;
-use RDuuke\Newbie\Files;
+use RDuuke\Newbie\File;
+use RDuuke\Newbie\Type;
 
 class FileBaseController extends Controller
 {
@@ -19,8 +20,8 @@ class FileBaseController extends Controller
 
     public function Index()
     {
-        $files = Files::all();
-
+        //$files = File::all();
+        $files = allFiles();
         return view('admin/files/index', compact('files'));
     }
 
@@ -31,14 +32,18 @@ class FileBaseController extends Controller
 
     public function Show($id)
     {
-        $file = Files::find($id);
-        return view('admin/files/show', compact('file'));
+        $file = File::find($id);
+        $type =  Type::find($file->format->type_id);
+        //echo "<pre>";
+        //print_r($file->format->type_id);
+        //die();
+        return view('admin/files/show', compact('file','type'));
 
     }
 
     public function Edit($id)
     {
-        $file = Files::find($id);
+        $file = File::find($id);
 
         return view('admin/files/edit', compact('file'));
     }
@@ -56,26 +61,33 @@ class FileBaseController extends Controller
             $format = end(explode('.', $this->file->getClientFileName()));
             //$validateFormat = formatType($format); //$validateFormat = formatInfo($format, $this->file->getClientFileName)
             $validateFormat = formatInfo('1',$format, $this->file->getClientFileName());
-            //print_r($validateFormat);
-            //die();
+            // echo '<pre>';
+            // print_r($validateFormat);
+            // die();
             try{
 
                 if ($validateFormat != false) {
 
 
                     //$this->file->moveTo(RESOURCE.$this->file->getClientFileName());
+
                     $this->file->moveTo($validateFormat['MoveTo']);
-                    $fr = new Files();
+                    $fr = new File();
                     $fr->title = $data['title_file'];//$this->file->getClientFileName();
                     $fr->description = $data['description'];
                     $fr->url = $validateFormat['saveIn'];//$this->file->getClientFileName();
                     $fr->format_id = $validateFormat['id_format'];
-                    $fr->user_id = 2;
+                    $fr->user_id = 1;
                     $fr->materia_id = 1;
                     $fr->save();
 
+<<<<<<< HEAD
+                    return self::Index();
+
+=======
                     echo 'Se guardo';
-                    die();
+                    return view('admin/files/index');
+>>>>>>> 8d6b5122a156ef098458f8c2b6ff14927e9bb595
                 }
                 else{
                     throw new \Exception('Invalid Format');
@@ -106,7 +118,7 @@ class FileBaseController extends Controller
         $file_client = $f['user_file'];
         //print_r($file_client->getClientFileName());
         //die();
-        $file = Files::find($id);
+        $file = File::find($id);
         $file->title = $data['title_file'];
         $file->description = $data['description'];
         $v = validateFile($file_client);
@@ -137,7 +149,7 @@ class FileBaseController extends Controller
     public function Destroy($id)
     {
 
-        $dl = Files::findOrFail($id);
+        $dl = File::findOrFail($id);
         if(unlink(RESOURCE.$dl->url)){
             $dl->delete();
         }
@@ -145,12 +157,12 @@ class FileBaseController extends Controller
         // TODO: Implement Destroy() method.
     }
 
-    public function FilterResult($typeFile, $limit, $oldResponse)
+    public function FilterResult($typeFile)
     {
         //$files = Files::whereBetween('format_id', array($typeFile, $limit))->get();
         //header("Content-type:application/json");
         //echo json_encode($files);
-        $files = filter($typeFile, $limit);
+        $files = filter($typeFile);
         if(! $files) {
             echo "0";
             return false;
