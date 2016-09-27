@@ -1,10 +1,7 @@
 <?php $this->layout('layout/base'); ?>
 <div class="row">
-	<div class="col s12 m6 l6">
+	<div class="col s12 m12 l12">
 		<h3 class="n_user"><?= $user->names ?></h3>
-		<img class="materialboxed center" src="https://blog.seibert-media.net/wp-content/uploads/2011/01/Avatar_Martin-Seibert1.png">
-	</div>
-	<div class="col s12 m6 l6">
 		<h5> Mi infrmación </h5>
 		<ul>
 			<li>

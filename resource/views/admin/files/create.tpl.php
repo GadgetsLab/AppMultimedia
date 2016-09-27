@@ -7,9 +7,16 @@
 					<input type="text" name="title_file" required>
 		    		<label for="title_file">Título del Archivo</label>
 				</div>
-				<div class="input-field col s12 m12 l12"> 
-		    		<button type="button" id="sub_archivo" class="btn ">Subir Archivo</button>
-				    <input type="file" id="file" class="oculto" name="user_file">
+				<div class="input-field col s12 m12 l12">
+					<div class="file-field input-field">
+					  <div class="btn">
+					    <span>File</span>
+					    <input id="user_file" type="file" name="user_file">
+					  </div>
+					  <div class="file-path-wrapper">
+					    <input class="file-path validate" type="text">
+					  </div>
+					</div>
 				</div>
 				<div class="input-field col s12 m12 l12"> 
 		    		<textarea name="description" id="textarea1" cols="30" rows="10" class="materialize-textarea"></textarea>

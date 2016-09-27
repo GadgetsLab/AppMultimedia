@@ -54,8 +54,10 @@ class FileBaseController extends Controller
         self::setRequest($request);
         $data = self::getPost();
 
+
         //$this->request->getUploadedFiles();
         $files = $this->request->getUploadedFiles();
+   
         $this->file = $files['user_file'];
         if($this->file->getError() == UPLOAD_ERR_OK){
             $format = end(explode('.', $this->file->getClientFileName()));
@@ -99,7 +101,7 @@ class FileBaseController extends Controller
 
         }
 
-        return view('files/result', compact('name'));
+        return view('admin/files/result', compact('name'));
     }
 
     public function Update($id, $request)

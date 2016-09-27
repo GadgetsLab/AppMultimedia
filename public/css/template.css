@@ -1,4 +1,6 @@
-Content-Type: text/css; charset=utf-8;
+img{
+    max-width: 100%;
+}
 .total{
     width: 100%;
 }
