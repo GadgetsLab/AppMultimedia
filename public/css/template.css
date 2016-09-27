@@ -28,3 +28,31 @@ Content-Type: text/css; charset=utf-8;
     text-align: center;
     font-style: italic;
 }
+.panel {
+    border: 1px solid #ccc;
+    margin: 7px 0;
+    box-shadow: 3px 4px 7px #ccc;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+.panel-title{
+	color: #fff;
+}
+.panel-title {
+    box-sizing: border-box;
+    padding: 0.5px;
+    text-align: center;
+    box-shadow: 1px 1px 1px #4e4e2d;
+}
+.panel-body {
+    padding: 0 10px 10px;
+}
+.span_tit_video{
+    bottom: 4% !important;
+}
+.full{
+    width: 100%;
+}
+.oculto{
+    display: none;
+}
