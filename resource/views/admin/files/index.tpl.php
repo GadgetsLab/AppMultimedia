@@ -1,6 +1,11 @@
 <?php $this->layout('layout/base'); ?>
+<<<<<<< HEAD
 <h1 class="text-center">Archivos</h1>
 <select name="format" id="type">
+=======
+<h1>Archivos</h1>
+<select name="format" id="type" class="browser-default">
+>>>>>>> d7322dfa32521fb24c3746bc9d0075fe5f7f4e5e
     <option value="" selected disabled>Filtrar por tipos</option>
     <option value="0">Todos</option>
     <option value="1">Videos</option>

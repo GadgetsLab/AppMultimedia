@@ -43,5 +43,9 @@
 <?php script('js/files_filter.js');?>
 <?php script('js/functions.js');?>
 <?php script('js/template.js'); ?>
+<?php script('js/files_filter.js');?>
+<?php script('js/functions.js');?>
+
+
 </body>
 </html>
