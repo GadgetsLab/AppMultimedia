@@ -56,3 +56,14 @@ Content-Type: text/css; charset=utf-8;
 .oculto{
     display: none;
 }
+.n_user{
+    text-align: center;
+    display: block;
+}
+.center{
+    margin: 0 auto;
+    display: block;
+}
+img.materialboxed.center.initialized {
+    max-width: 100%;
+}
