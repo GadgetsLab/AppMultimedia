@@ -8,38 +8,31 @@
     <option value="3">Archivos</option>
 </select>
 <div class="row"> 
-    <?php foreach($files as $file): ?>
-        <div class="col s12 m6 l6">
-            <div class="panel hoverable">
-                <?php if ($file->type == 'video'): ?>
-                    <div class="panel-title  blue darken-1"> 
-                        <h4><?= $file->title ?></h4>
-                    </div>
-                    <div class="panel-body"> 
-                        <p>Description: <?= $this->e($file->description) ?></p>
-                        <p>Tipo: <?= $this->e($file->type)?></p>
-                        <?= route('admin/files/'.$file->id, 'Ver', null, ['class' => 'btn blue darken-1']) ?>
-                    </div>
-                <?php elseif ($file->type == 'image'): ?>
-                    <div class="panel-title  green darken-1"> 
-                        <h4><?= $file->title ?></h4>
-                    </div>
-                    <div class="panel-body"> 
-                        <p>Description: <?= $this->e($file->description) ?></p>
-                        <p>Tipo: <?= $this->e($file->type)?></p>
-                        <?= route('admin/files/'.$file->id, 'Ver', null, ['class' => 'btn green darken-1']) ?>
-                    </div>
-                <?php elseif ($file->type == 'document'): ?>
-                    <div class="panel-title  red darken-1"> 
-                        <h4><?= $file->title ?></h4>
-                    </div>
-                    <div class="panel-body"> 
-                        <p>Description: <?= $this->e($file->description) ?></p>
-                        <p>Tipo: <?= $this->e($file->type)?></p>
-                        <?= route('admin/files/'.$file->id, 'Ver', null, ['class' => 'btn red darken-1']) ?>
-                    </div>
-                <?php endif ?>
-            </div>
-        </div>
-    <?php endforeach?>
+    <table> 
+        <thead>
+            <tr>
+                <td>Id</td>
+                <td>Nombre</td>
+                <td>Descripcción</td>
+                <td>Tipo</td>
+                <td colspan="2">Acciones</td>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach($files as $file): ?>
+                <tr>
+                    <td><?= $file->id ?></td>
+                    <td><?= route('admin/files/'.$file->id, $file->title, null, ['class' => 'my_class']) ?></td>
+                    <td><?= $this->e($file->description) ?></td>
+                    <td><?= $this->e($file->type)?></td>
+                    <td>
+                        <?= route('admin/files/'.$file->id.'/edit', '<i class="material-icons tiny">mode_edit</i>', null, ['class' => 'btn lime darken-4']) ?>
+                    </td>
+                    <td>
+                        <?= route('admin/files/'.$file->id.'/destroy', '<i class="material-icons tiny">delete</i>', null, ['class' => 'btn red darken-4']) ?>
+                    </td>
+                </tr>
+            <?php endforeach?>
+        </tbody>
+    </table>
 </div>
