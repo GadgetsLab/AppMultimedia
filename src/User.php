@@ -25,4 +25,8 @@ class User extends Model
     {
         return $this->names . ' ' . $this->last_names;
     }
+
+    public function rol(){
+        return $this->belongsTo('RDuuke\Newbie\Rol');
+    }
 }
