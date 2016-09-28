@@ -21,7 +21,7 @@
 		    	<label class="active" for="first_name2">Contraseña</label>
 		    </div>
 		    <div class="input-field col s12"> 
-			    <select name="role_id" id="role_id">
+			    <select name="rol_id" id="role_id">
 			        <option value="1">Administrador</option>
 			    </select>
 		    </div>
