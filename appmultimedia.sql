@@ -48,6 +48,27 @@ CREATE TABLE IF NOT EXISTS `formats` (
 
 -- La exportación de datos fue deseleccionada.
 
+INSERT INTO `formats` (`id`, `name`, `description`, `type_id`, `created_at`, `updated_at`) VALUES
+  (1, 'mp4', 'This is a format video', 1, '2016-09-21 09:30:34', '2016-09-21 09:30:34');
+INSERT INTO `formats` (`id`, `name`, `description`, `type_id`, `created_at`, `updated_at`) VALUES
+  (2, 'jpg', 'This is a format compressor image', 2, '2016-09-21 09:30:37', '2016-09-21 09:30:37');
+INSERT INTO `formats` (`id`, `name`, `description`, `type_id`, `created_at`, `updated_at`) VALUES
+  (3, 'gif', 'This is a format animate image', 2, '2016-09-21 09:30:40', '2016-09-21 09:30:40');
+INSERT INTO `formats` (`id`, `name`, `description`, `type_id`, `created_at`, `updated_at`) VALUES
+  (4, 'png', 'This is a format image', 2, '2016-09-21 09:30:43', '2016-09-21 09:30:43');
+INSERT INTO `formats` (`id`, `name`, `description`, `type_id`, `created_at`, `updated_at`) VALUES
+  (5, 'docx ', 'This is a format by Word\'s document', 3, '2016-09-21 09:30:46', '2016-09-21 09:30:46');
+INSERT INTO `formats` (`id`, `name`, `description`, `type_id`, `created_at`, `updated_at`) VALUES
+  (6, 'doc', 'This is a other format by Word\'s document', 3, '2016-09-21 09:30:47', '2016-09-21 09:30:47');
+INSERT INTO `formats` (`id`, `name`, `description`, `type_id`, `created_at`, `updated_at`) VALUES
+  (7, 'xls', 'This is a format by Excel\'s document', 3, '2016-09-21 09:30:49', '2016-09-21 09:30:49');
+INSERT INTO `formats` (`id`, `name`, `description`, `type_id`, `created_at`, `updated_at`) VALUES
+  (8, 'pdf', 'This is a format by PDF\'s document', 3, '2016-09-21 09:30:52', '2016-09-21 09:30:52');
+INSERT INTO `formats` (`id`, `name`, `description`, `type_id`, `created_at`, `updated_at`) VALUES
+  (9, 'txt', 'This is a format by TXT\'s document', 3, '2016-09-21 09:30:53', '2016-09-21 09:30:53');
+INSERT INTO `formats` (`id`, `name`, `description`, `type_id`, `created_at`, `updated_at`) VALUES
+  (10, 'xlsx', 'This is a format Excel\'s document (2007)', 3, '2016-09-21 09:30:55', '2016-09-21 09:30:55');
+
 
 -- Volcando estructura para tabla appmultimedia.roles
 CREATE TABLE IF NOT EXISTS `roles` (
@@ -62,6 +83,8 @@ CREATE TABLE IF NOT EXISTS `roles` (
 
 -- La exportación de datos fue deseleccionada.
 
+INSERT INTO `roles` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
+  (1, 'administrator', 'the big boss', '2016-09-08 11:01:47', '2016-09-08 11:01:47');
 
 -- Volcando estructura para tabla appmultimedia.types
 CREATE TABLE IF NOT EXISTS `types` (
@@ -70,8 +93,12 @@ CREATE TABLE IF NOT EXISTS `types` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='/*\r\nTipo de Archivos\r\n*/';
 
--- La exportación de datos fue deseleccionada.
-
+INSERT INTO `types` (`id`, `type`) VALUES
+  (1, 'video');
+INSERT INTO `types` (`id`, `type`) VALUES
+  (2, 'image');
+INSERT INTO `types` (`id`, `type`) VALUES
+  (3, 'document');
 
 -- Volcando estructura para tabla appmultimedia.users
 CREATE TABLE IF NOT EXISTS `users` (
@@ -89,7 +116,8 @@ CREATE TABLE IF NOT EXISTS `users` (
   CONSTRAINT `FK_users_roles` FOREIGN KEY (`rol_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='/* \r\nTabla que contiene todos los usuarios.\r\n */';
 
--- La exportación de datos fue deseleccionada.
+INSERT INTO `users` (`id`, `names`, `last_names`, `email`, `password`, `rol_id`, `created_at`, `updated_at`) VALUES
+  (2, 'daniel esteban', 'carcamo orrego', 'reickchozo@gmail.com', '123456', 1, '2016-09-08 11:03:12', '2016-09-08 11:03:12');
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

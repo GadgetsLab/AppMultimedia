@@ -85,8 +85,10 @@ class FileBaseController extends Controller
 
                     return self::Index();
 
+
                     echo 'Se guardo';
                     return view('admin/files/index');
+
                 }
                 else{
                     throw new \Exception('Invalid Format');
