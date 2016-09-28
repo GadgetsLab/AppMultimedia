@@ -81,13 +81,8 @@ class FileBaseController extends Controller
                     $fr->materia_id = 1;
                     $fr->save();
 
-<<<<<<< HEAD
                     return self::Index();
 
-=======
-                    echo 'Se guardo';
-                    return view('admin/files/index');
->>>>>>> 8d6b5122a156ef098458f8c2b6ff14927e9bb595
                 }
                 else{
                     throw new \Exception('Invalid Format');
