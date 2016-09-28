@@ -54,8 +54,10 @@ class FileBaseController extends Controller
         self::setRequest($request);
         $data = self::getPost();
 
+
         //$this->request->getUploadedFiles();
         $files = $this->request->getUploadedFiles();
+
         $this->file = $files['user_file'];
         if ($this->file->getError() == UPLOAD_ERR_OK) {
             $format = end(explode('.', $this->file->getClientFileName()));
@@ -83,16 +85,17 @@ class FileBaseController extends Controller
 
                     return self::Index();
                 } else {
-                    throw new \Exception('Invalid Format');
+
+                    return view('admin/files/index');
+
                 }
-
-            } catch
-            (\Exception $e) {
-
-                print $e;
+            }catch( \Exception $e){
+                print_r($e);
             }
+        } else {
+            throw new \Exception('Invalid Format');
         }
-        return view('files/result', compact('name'));
+        return view('admin/files/result', compact('name'));
     }
 
     public function Update($id, $request)

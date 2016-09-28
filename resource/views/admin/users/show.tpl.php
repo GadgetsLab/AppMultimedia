@@ -1,4 +1,24 @@
-<h1>Usuario</h1>
-<pre>
-    <?php print_r($user); ?>
-</pre>
+<?php $this->layout('layout/base'); ?>
+<div class="row">
+	<div class="col s12 m12 l12">
+		<h4 class="n_user">Perfil de: <?= $user->getFullNameAttribute() ?></h4>
+		<h5> Información </h5>
+		<ul>
+			<li>
+				<strong>Nombres :</strong> 
+				<?= utf8_encode($user->names); ?>
+			</li>
+			<li>
+				<strong>Apellidos :</strong>
+				<?= utf8_encode($user->last_names); ?></li>
+			<li>
+				<strong>Correo :</strong> 
+				<?= $user->email ?></li>
+			<li>
+				<strong>Tipo de usuario:</strong> 
+				<?= $this->e(ucwords($user->rol->name)) ?>
+			</li>
+		</ul>
+		<?= route('admin/users/'.$user->id.'/edit', '<i class="material-icons tiny">mode_edit</i> <span>Editar</span>', null, ['class' => 'btn blue darken-4']) ?>
+	</div>
+</div>

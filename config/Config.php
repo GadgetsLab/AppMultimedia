@@ -7,8 +7,7 @@ $dataDB = [
     'database'  => 'appmultimedia',
     'username'  => 'root',
     'password'  => '',
-    'char
-    set'   => 'utf8',
+    'charset'   => 'utf8',
     'collation' => 'utf8_unicode_ci',
     'prefix'    => '',
 ];

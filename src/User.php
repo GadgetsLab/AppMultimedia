@@ -10,7 +10,7 @@ class User extends Model
 {
     protected $table = 'users';
 
-    protected $fillable = ['names', 'last_names', 'email', 'role_id', 'password'];
+    protected $fillable = ['names', 'last_names', 'email', 'rol_id', 'password'];
 
     protected $hidden = ['create_at', 'update_at'];
 
@@ -24,5 +24,9 @@ class User extends Model
     public function getFullNameAttribute()
     {
         return $this->names . ' ' . $this->last_names;
+    }
+
+    public function rol(){
+        return $this->belongsTo('RDuuke\Newbie\Rol');
     }
 }
