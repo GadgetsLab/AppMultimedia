@@ -57,14 +57,14 @@ class FileBaseController extends Controller
         //$this->request->getUploadedFiles();
         $files = $this->request->getUploadedFiles();
         $this->file = $files['user_file'];
-        if($this->file->getError() == UPLOAD_ERR_OK){
+        if ($this->file->getError() == UPLOAD_ERR_OK) {
             $format = end(explode('.', $this->file->getClientFileName()));
             //$validateFormat = formatType($format); //$validateFormat = formatInfo($format, $this->file->getClientFileName)
-            $validateFormat = formatInfo('1',$format, $this->file->getClientFileName());
+            $validateFormat = formatInfo('1', $format, $this->file->getClientFileName());
             // echo '<pre>';
             // print_r($validateFormat);
             // die();
-            try{
+            try {
 
                 if ($validateFormat != false) {
 
@@ -81,27 +81,17 @@ class FileBaseController extends Controller
                     $fr->materia_id = 1;
                     $fr->save();
 
-<<<<<<< HEAD
                     return self::Index();
-
-=======
-                    echo 'Se guardo';
-                    return view('admin/files/index');
->>>>>>> 8d6b5122a156ef098458f8c2b6ff14927e9bb595
-                }
-                else{
+                } else {
                     throw new \Exception('Invalid Format');
                 }
 
-            }
-            catch(\Exception $e){
+            } catch
+            (\Exception $e) {
 
                 print $e;
-                die();
             }
-
         }
-
         return view('files/result', compact('name'));
     }
 
@@ -171,62 +161,62 @@ class FileBaseController extends Controller
         echo $files->toJson();
         die();
         //echo json_encode($files);
-         //$newresponse = $oldResponse->withHeader('Content-type','application/json');
-       // $newresponse->withJson($files);
+        //$newresponse = $oldResponse->withHeader('Content-type','application/json');
+        // $newresponse->withJson($files);
         //return $newresponse;
 
 
     }
-/*
-    public function SaveFile($request)
-    {
+    /*
+        public function SaveFile($request)
+        {
 
-        //return view('files/result');
-        $data = $_POST;
-        self::setRequest($request);
-        //$this->request->getUploadedFiles();
-        $files = $this->request->getUploadedFiles();
-        $this->file = $files['user_file'];
-        if($this->file->getError() === UPLOAD_ERR_OK){
-            $format = end(explode('.', $this->file->getClientFileName()));
-            //$validateFormat = formatType($format); //$validateFormat = formatInfo($format, $this->file->getClientFileName)
-            $validateFormat = formatInfo('1',$format, $this->file->getClientFileName());
-            //print_r($validateFormat);
-            //die();
-            try{
+            //return view('files/result');
+            $data = $_POST;
+            self::setRequest($request);
+            //$this->request->getUploadedFiles();
+            $files = $this->request->getUploadedFiles();
+            $this->file = $files['user_file'];
+            if($this->file->getError() === UPLOAD_ERR_OK){
+                $format = end(explode('.', $this->file->getClientFileName()));
+                //$validateFormat = formatType($format); //$validateFormat = formatInfo($format, $this->file->getClientFileName)
+                $validateFormat = formatInfo('1',$format, $this->file->getClientFileName());
+                //print_r($validateFormat);
+                //die();
+                try{
 
-                if ($validateFormat != false) {
+                    if ($validateFormat != false) {
 
 
-                    //$this->file->moveTo(RESOURCE.$this->file->getClientFileName());
-                    $this->file->moveTo($validateFormat['saveIn']);
-                    $fr = new Files();
-                    $fr->title = $data['title_file']//$this->file->getClientFileName();
-                    $fr->description = $data['description'];
-                    $fr->url = $validateFormat['saveIn'];//$this->file->getClientFileName();
-                    $fr->format_id = $validateFormat['id_format'];
-                    $fr->user_id = 2;
-                    $fr->materia_id = 1;
-                    $fr->save();
+                        //$this->file->moveTo(RESOURCE.$this->file->getClientFileName());
+                        $this->file->moveTo($validateFormat['saveIn']);
+                        $fr = new Files();
+                        $fr->title = $data['title_file']//$this->file->getClientFileName();
+                        $fr->description = $data['description'];
+                        $fr->url = $validateFormat['saveIn'];//$this->file->getClientFileName();
+                        $fr->format_id = $validateFormat['id_format'];
+                        $fr->user_id = 2;
+                        $fr->materia_id = 1;
+                        $fr->save();
 
-                    echo 'Se guardo';
+                        echo 'Se guardo';
+                        die();
+                    }
+                    else{
+                        throw new \Exception('Invalid Format');
+                    }
+
+                }
+                catch(\Exception $e){
+
+                    print $e;
                     die();
                 }
-                else{
-                    throw new \Exception('Invalid Format');
-                }
 
             }
-            catch(\Exception $e){
 
-                print $e;
-                die();
-            }
+            return view('files/result', compact('name'));
 
         }
-
-        return view('files/result', compact('name'));
-
-    }
-*/
+    */
 }

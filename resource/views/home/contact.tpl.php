@@ -2,7 +2,7 @@
 <br>
 <hr class="blue lighten-3">
 <h5 class="center-align">Contacto con el administrador</h5>
-<hr class="blue lighten-3   ">
+<hr class="blue lighten-3">
 <form action="">
     <div class="row">
         <form class="col s12">
