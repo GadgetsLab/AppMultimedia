@@ -1,6 +1,11 @@
 img{
     max-width: 100%;
 }
+.clr_10{
+    width: 100%;
+    display: block;
+    height: 10px;
+}
 .total{
     width: 100%;
 }
@@ -68,4 +73,7 @@ img{
 }
 img.materialboxed.center.initialized {
     max-width: 100%;
+}
+#toggle_file{
+    display: none;
 }

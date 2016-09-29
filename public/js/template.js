@@ -3,9 +3,13 @@ $(document).ready(function() {
     $('.materialboxed').materialbox();
     $('select').material_select();
   	$('#textarea1').trigger('autoresize');
-    $("#sub_archivo").click(function(event) {
-  		event.preventDefault();
-  		console.log("Tavo");
-  		$("#file").trigger('click');
-    });
+   	$(".select_archivo").change(function() {
+    	if (!$('.select_archivo:checked')){
+    		$("#toggle_file").fadeOut();
+    		$("#edit_file").attr('enctype', '');
+       	}else{
+    		$("#toggle_file").fadeIn();
+    		$("#edit_file").attr('enctype', 'multipart/form-data');
+    	}
+  	});
 });
