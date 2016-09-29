@@ -1,8 +1,8 @@
 <?php $this->layout('layout/base'); ?>
 <div class="row">
 	<div class="col s12 m12 l12">
-		<h3 class="n_user"><?= $user->names ?></h3>
-		<h5> Mi infrmación </h5>
+		<h4 class="n_user">Perfil de: <?= $user->getFullNameAttribute() ?></h4>
+		<h5> Información </h5>
 		<ul>
 			<li>
 				<strong>Nombres :</strong> 
@@ -16,17 +16,9 @@
 				<?= $user->email ?></li>
 			<li>
 				<strong>Tipo de usuario:</strong> 
-				<?php if ($user->rol_id == 1): ?>
-					Administrador
-				<?php elseif ($user->rol_id == 2): ?>
-					Moderador
-				<?php elseif ($user->rol_id == 3): ?>
-					Usuario
-				<?php elseif ($user->rol_id == 4): ?>
-					Invitado
-				<?php endif ?></div>
+				<?= $this->e(ucwords($user->rol->name)) ?>
 			</li>
 		</ul>
-		<?= route('admin/users/'.$user->id.'/edit', '<i class="material-icons tiny">mode_edit</i> <span>Editar</span>', null, ['class' => 'btn lime darken-4']) ?>
+		<?= route('admin/users/'.$user->id.'/edit', '<i class="material-icons tiny">mode_edit</i> <span>Editar</span>', null, ['class' => 'btn blue darken-4']) ?>
 	</div>
 </div>

@@ -1,5 +1,4 @@
 <?php $this->layout('layout/base'); ?>
-<h1 class="text-center">Archivos</h1>
 <select name="format" id="type" class="browser-default">
     <option value="" selected disabled>Filtrar por tipos</option>
     <option value="0">Todos</option>
@@ -26,10 +25,10 @@
                     <td><?= $this->e($file->description) ?></td>
                     <td><?= $this->e($file->type)?></td>
                     <td>
-                        <?= route('admin/files/'.$file->id.'/edit', '<i class="material-icons tiny">mode_edit</i>', null, ['class' => 'btn lime darken-4']) ?>
+                        <?= route('admin/files/'.$file->id.'/edit', '<i class="material-icons tiny">mode_edit</i>', null, ['class' => 'btn blue']) ?>
                     </td>
                     <td>
-                        <?= route('admin/files/'.$file->id.'/destroy', '<i class="material-icons tiny">delete</i>', null, ['class' => 'btn red darken-4']) ?>
+                        <?= route('admin/files/'.$file->id.'/destroy', '<i class="material-icons tiny">delete</i>', null, ['class' => 'btn blue darken-4']) ?>
                     </td>
                 </tr>
             <?php endforeach?>
