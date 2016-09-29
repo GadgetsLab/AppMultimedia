@@ -7,6 +7,7 @@
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <?php style('css/template.css'); ?>
     <?php style('css/materialize.min.css'); ?>
+    <?php style('css/chosen.min.css');?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 </head>
@@ -63,10 +64,10 @@
 </div>
 <?php script('js/jquery.min.js')?>
 <?php script('js/materialize.min.js')?>
+<?php script('js/chosen.jquery.js');?>
 <?php script('js/files_filter.js');?>
 <?php script('js/functions.js');?>
 <?php script('js/template.js'); ?>
-<?php script('js/files_filter.js');?>
 <?php script('js/functions.js');?>
 
 

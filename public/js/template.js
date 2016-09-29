@@ -5,7 +5,6 @@ $(document).ready(function() {
   	$('#textarea1').trigger('autoresize');
     $("#sub_archivo").click(function(event) {
   		event.preventDefault();
-  		console.log("Tavo");
   		$("#file").trigger('click');
     });
 });

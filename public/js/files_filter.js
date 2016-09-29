@@ -5,5 +5,8 @@ $(document).ready(function(){
         var format = $('#type').val();
         functions.filter(format);
     });
+    $('.modal-trigger').leanModal();
+    $('.select-users').chosen({disable_search_threshold: 10});
+
 
 });

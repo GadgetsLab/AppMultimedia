@@ -12,6 +12,7 @@ namespace RDuuke\Newbie\Controllers\Base;
 use MartynBiz\Slim3Controller\Controller;
 use RDuuke\Newbie\File;
 use RDuuke\Newbie\Type;
+use RDuuke\Newbie\User;
 
 class FileBaseController extends Controller
 {
@@ -20,7 +21,6 @@ class FileBaseController extends Controller
 
     public function Index()
     {
-        //$files = File::all();
         $files = allFiles();
         return view('admin/files/index', compact('files'));
     }
@@ -34,10 +34,11 @@ class FileBaseController extends Controller
     {
         $file = File::find($id);
         $type =  Type::find($file->format->type_id);
+        $users = User::all();
         //echo "<pre>";
         //print_r($file->format->type_id);
         //die();
-        return view('admin/files/show', compact('file','type'));
+        return view('admin/files/show', compact('file','type', 'users'));
 
     }
 
@@ -79,7 +80,7 @@ class FileBaseController extends Controller
                     $fr->description = $data['description'];
                     $fr->url = $validateFormat['saveIn'];//$this->file->getClientFileName();
                     $fr->format_id = $validateFormat['id_format'];
-                    $fr->user_id = 1;
+                    $fr->user_id = 2;
                     $fr->materia_id = 1;
                     $fr->save();
 
@@ -168,6 +169,11 @@ class FileBaseController extends Controller
         // $newresponse->withJson($files);
         //return $newresponse;
 
+
+    }
+
+    public function ShareFile()
+    {
 
     }
     /*

@@ -20,12 +20,8 @@
 		    	<input type="password" name="password" required>
 		    	<label class="active" for="first_name2">Contraseña</label>
 		    </div>
-		    <div class="input-field col s12"> 
-<<<<<<< HEAD
+		    <div class="input-field col s12">
 			    <select name="rol_id" id="role_id">
-=======
-			    <select name="rol_id" id="rol_id">
->>>>>>> 4789193968c6d876c4dfc51c8aaf1cddaf4f766f
 			        <option value="1">Administrador</option>
 			    </select>
 		    </div>

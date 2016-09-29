@@ -143,6 +143,18 @@ INSERT INTO `users` (`id`, `names`, `last_names`, `email`, `password`, `rol_id`,
 -- Índices para tablas volcadas
 --
 
+CREATE TABLE IF NOT EXISTS `shareds` (
+  `id` int(11) NOT NULL,
+  `of_who` int(11) NOT NULL,
+  `for_who` int(11) NOT NULL,
+  `file_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_user` (`of_who`),
+  KEY `FK_file` (`file_id`),
+  CONSTRAINT `FK_file` FOREIGN KEY (`file_id`) REFERENCES `files` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `FK_user` FOREIGN KEY (`of_who`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='This table has data related with the commentaries';
+
 --
 -- Indices de la tabla `files`
 --
