@@ -38,6 +38,8 @@ $app->group('', function() use ($app) {
     $this->get('/images', $controller('images'));
     $this->get('/contact', $controller('contact'));
     $this->get('/fileup', $controller('fileup'));
+    $this->post('/comments', $controller('addComments'));
+    $this->get('/comments', $controller('allComments'));
 });
 
 /*$app->get('/text', function () {

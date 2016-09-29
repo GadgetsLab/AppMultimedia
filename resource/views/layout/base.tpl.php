@@ -59,6 +59,7 @@
     </nav>
 </div>
 <div class="container">
+    <br><br><br>
 <?= $this->section('content')?>
 </div>
 <?php script('js/jquery.min.js')?>
