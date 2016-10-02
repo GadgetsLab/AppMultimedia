@@ -40,6 +40,7 @@ $app->group('', function() use ($app) {
     $this->get('/fileup', $controller('fileup'));
     $this->post('/comments', $controller('addComments'));
     $this->get('/comments', $controller('allComments'));
+    $this->post('/share', $controller('shareFile'));
 });
 
 /*$app->get('/text', function () {
@@ -111,7 +112,6 @@ $app->group('/admin/files', function () use ($app){
         $controller = new RDuuke\Newbie\Controllers\FileController($app);
         $controller->FilterResult($id);
     });
-
 
 });
 

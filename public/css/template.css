@@ -1,6 +1,7 @@
 img{
     max-width: 100%;
 }
+
 .clr_10{
     width: 100%;
     display: block;
@@ -76,4 +77,30 @@ img.materialboxed.center.initialized {
 }
 #toggle_file{
     display: none;
+}
+
+#veil
+{
+    background-color: #000;
+    display: none;
+    height: 100%;
+    left: 0;
+    rgba: 0,0,0,0.9;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 5;
+}
+#modal-d
+{
+    background-color: #fff;
+    height: 300px;
+    margin: 6em auto;
+    padding: 1em 2em;
+    width: 800px;
+    z-index:6;
+}
+.text-white
+{
+    color: #fff !important;
 }

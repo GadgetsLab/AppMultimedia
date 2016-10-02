@@ -42,22 +42,41 @@ var functions = {
         });
     },
     allcomments: function() {
-        $.ajax({
+        j.ajax({
             url: route + 'comments',
             method: 'get'
         }).done( function(response){
-            $('#allComments').html('');
+            j('#allComments').html('');
             var count = Object.keys(response).length;
             if (count > 0 ){
                 for (var i in response) {
                     var comments =  "<li class='collection-item'><p>"+response[i]['comment']+"<a href="+route+"/admin/users/"+response[i]['id']+">"+
                         "<span class='badge  light-blue ' style='color: #fff; position: relative;margin-left: 15px;'>" +
                         ""+ response[i]['names'] +"</span></a></p></li>"
-                    $('#allComments').append(comments);
+                    j('#allComments').append(comments);
                 }
             } else {
-                $('#allComments').html('<p>No hay comentarios actualmente</p>');
+                j('#allComments').html('<p>No hay comentarios actualmente</p>');
             }
         });
-    }
+    },
+    callshare: function(people){
+        console.log(people);
+        j.ajax({
+            url: route + 'share',
+            method: 'POST',
+            data:people,
+            success: function(response){
+                if(response == '1') {
+                    console.log('Todo Bien');
+                }
+            }
+        });
+    },
+    open_modal: function(){
+    j('#veil').css('display','block');
+    },
+    close_modal: function(){
+        j('#veil').css('display','none');
+    },
 };

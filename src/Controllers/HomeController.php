@@ -5,6 +5,7 @@ namespace RDuuke\Newbie\Controllers;
 
 use MartynBiz\Slim3Controller\Controller;
 use RDuuke\Newbie\Comment;
+use RDuuke\Newbie\Shared;
 
 class HomeController extends Controller
 {
@@ -62,5 +63,27 @@ class HomeController extends Controller
                                 ->get();
         header("Content-type:appliaction/json");
         echo $allComments->toJson();
-        die();    }
+        die();
+    }
+
+    public function shareFile()
+    {
+        $data = self::getPost();
+        $people_shares = $data['people-share'];
+        $file = $data['file'];
+        //print_r($data);
+        //die();
+        foreach($people_shares as $user){
+            $share = new Shared;
+            $share->of_who = 2;
+            $share->for_who = $user;
+            $share->file_id = $file;
+            $share->save();
+            unset($share);
+
+        }
+        echo '1';
+        return true;
+
+    }
 }

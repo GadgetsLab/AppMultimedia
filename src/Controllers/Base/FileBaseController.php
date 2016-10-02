@@ -13,6 +13,7 @@ use MartynBiz\Slim3Controller\Controller;
 use RDuuke\Newbie\File;
 use RDuuke\Newbie\Type;
 use RDuuke\Newbie\User;
+use RDuuke\Newbie\Shared;
 
 class FileBaseController extends Controller
 {
@@ -36,7 +37,7 @@ class FileBaseController extends Controller
         $type =  Type::find($file->format->type_id);
         $users = User::all();
         //echo "<pre>";
-        //print_r($file->format->type_id);
+        //print_r($type);
         //die();
         return view('admin/files/show', compact('file','type', 'users'));
 
@@ -172,9 +173,19 @@ class FileBaseController extends Controller
 
     }
 
-    public function ShareFile()
+    public function ShareFile($id,$request)
     {
-
+        self::setRequest($request);
+        $data = self::getPost();
+        if(! $data){
+            echo "ALgo no está bien";
+            return false;
+        }
+        //header('Content-type: application/json');
+        //echo json_encode($data);
+        echo "<pre>";
+        print_r($data);
+        die();
     }
     /*
         public function SaveFile($request)
