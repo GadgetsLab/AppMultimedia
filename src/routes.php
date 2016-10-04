@@ -41,6 +41,8 @@ $app->group('', function() use ($app) {
     $this->post('/comments', $controller('addComments'));
     $this->get('/comments', $controller('allComments'));
     $this->post('/share', $controller('shareFile'));
+    $this->get('/notifications', $controller('notifications'));
+    $this->get('/newnotifications', $controller('checkNotifications'));
 });
 
 /*$app->get('/text', function () {

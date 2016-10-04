@@ -17,4 +17,6 @@ class File extends Model{
     {
         return $this->belongsTo('RDuuke\Newbie\Format');
     }
+
+
 }

@@ -79,4 +79,21 @@ var functions = {
     close_modal: function(){
         j('#veil').css('display','none');
     },
+    checkNotifications: function(){
+        j.ajax({
+            url: route + 'newnotifications',
+            method: 'GET',
+            success: function (response) {
+               if(response > 0){
+                   j('#count').html(response);
+                   j('#count').show();
+               }
+               else
+               {
+                    j('#count').hide();
+               }
+
+            }
+        });
+    }
 };

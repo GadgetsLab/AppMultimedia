@@ -23,6 +23,9 @@
         <a href="#!" class="waves-effect"><span class="white-text"><i class="material-icons tiny">input</i>&nbsp; Cerrar sesión</a>
     </li>
     <li>
+        <a class="" href="<?= BASE_PUBLIC ?>/notifications"><i class="material-icons tiny">info</i>&nbsp; Notificaciones <span id="count" class="">2</span></a>
+    </li>
+    <li>
         <a class="waves-effect" href="#!"><i class="material-icons tiny">video_library</i>&nbsp; Videos</a>
     </li>
     <li>

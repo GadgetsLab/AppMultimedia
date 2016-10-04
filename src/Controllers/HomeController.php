@@ -6,6 +6,7 @@ namespace RDuuke\Newbie\Controllers;
 use MartynBiz\Slim3Controller\Controller;
 use RDuuke\Newbie\Comment;
 use RDuuke\Newbie\Shared;
+use RDuuke\Newbie\Notification;
 
 class HomeController extends Controller
 {
@@ -79,11 +80,30 @@ class HomeController extends Controller
             $share->for_who = $user;
             $share->file_id = $file;
             $share->save();
-            unset($share);
+
+            $notification = new Notification;
+            $notification->notification_id = $share->id;
+            $notification->type= 'shared';
+            $notification->save();
+
+            unset($share, $notification);
 
         }
         echo '1';
         return true;
 
+    }
+
+    public function notifications()
+    {
+        $notifications = Notification::all();
+        return view('admin/users/notifications', compact('notifications'));
+    }
+
+    public function checkNotifications()
+    {
+        $total = Notification::where('state','1')->count();
+        echo $total;
+        return true;
     }
 }

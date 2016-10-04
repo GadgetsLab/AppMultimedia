@@ -60,6 +60,7 @@ function filter($type)
 
 }
 
+
 function view($template, $parameters = [])
 {
     $tmpl = new \League\Plates\Engine('..\resource\views', 'tpl.php');

@@ -1,6 +1,6 @@
 $(document).ready(function() {
     functions.allcomments();
-
+    functions.checkNotifications();
     j(".button-collapse").sideNav();
     j('.materialboxed').materialbox();
     j('.select-materialize').material_select();

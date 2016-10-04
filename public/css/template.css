@@ -7,6 +7,14 @@ img{
     display: block;
     height: 10px;
 }
+#count{
+    background-color: tomato;
+    border-radius: 25%;
+    display:none;
+    color: white;
+    padding: .5em;
+}
+
 .total{
     width: 100%;
 }
