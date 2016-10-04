@@ -28,7 +28,7 @@ var functions = {
         });
     },
     comment: function(data){
-        $.ajax({
+        j.ajax({
             url: route + 'comments',
             method: 'post',
             data: data

@@ -51,7 +51,13 @@ class HomeController extends Controller
     public function addComments()
     {
 
-        Comment::create(self::getPost());
+        $comment = Comment::create(self::getPost());
+        $notification = new Notification;
+
+        $notification = new Notification;
+        $notification->notification_id = $comment->id;
+        $notification->type= 'comment';
+        $notification->save();
         echo '1';
         return true;
     }
