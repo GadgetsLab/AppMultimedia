@@ -4,7 +4,6 @@ $(document).ready(function() {
     $('.materialboxed').materialbox();
     $('select').material_select();
   	$('#textarea1').trigger('autoresize');
-<<<<<<< HEAD
    	$(".select_archivo").change(function() {
     	if (!$('.select_archivo:checked')){
     		$("#toggle_file").fadeOut();
@@ -14,8 +13,6 @@ $(document).ready(function() {
     		$("#edit_file").attr('enctype', 'multipart/form-data');
     	}
   	});
-});
-=======
     $('.modal-trigger').leanModal();
     $("#sub_archivo").click(function(event) {
   		event.preventDefault();
@@ -32,6 +29,5 @@ $(document).ready(function() {
     $('#addComment').on('click', function () {
         var data = $('#formComment').serialize();
         functions.comment(data);
-    })
+    });
 });
->>>>>>> 6cc8f30fbca7b3e6ce554e897a862372a03d7f7a
