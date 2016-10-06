@@ -78,11 +78,8 @@ $app->group('/web/users', function () use ($app) {
 
 });
 $app->group('/admin/files', function () use ($app){
-    $this->get('', function() use ($app){
         $controller = new RDuuke\Newbie\Controllers\FileController($app);
-        $controller->Index();
-
-    });
+    $this->get('', $controller('index'));
     $this->get('/create', function() use ($app){
         $controller = new RDuuke\Newbie\Controllers\FileController($app);
         $controller->Create();

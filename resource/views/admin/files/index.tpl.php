@@ -1,4 +1,4 @@
-<?php $this->layout('layout/base'); ?>
+<?php $this->layout('layout/base', ['user' => $user ]); ?>
 <select name="format" id="type" class="browser-default">
     <option value="" selected disabled>Filtrar por tipos</option>
     <option value="0">Todos</option>

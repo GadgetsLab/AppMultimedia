@@ -1,4 +1,4 @@
-<?php $this->layout('layout/base'); ?>
+<?php $this->layout('layout/base', ['user' => $user]); ?>
 <div class="row"> 
 	<div class="col-s12 m12 l12"> 
 		<form action="<?= BASE_PUBLIC ?>/admin/files" method="post" enctype="multipart/form-data" >
