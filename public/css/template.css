@@ -112,3 +112,7 @@ img.materialboxed.center.initialized {
 {
     color: #fff !important;
 }
+
+.uppercase-text{
+    text-transform: uppercase;
+}

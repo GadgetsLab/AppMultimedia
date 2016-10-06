@@ -1,15 +1,14 @@
-<?php $this->layout('layout/base'); ?>
+<?php $this->layout('layout/base', ['user' => $user]); ?>
 <br>
 <div class="col s12 m4 l6 offset-s4 offset-l3 center-align">
     <div class="row">
         <div class="input-field col s12">
-            <select>
-                <option value="" disabled selected>Choose your option</option>
+            <select class="browser-default">
+                <option value="" disabled>Choose your option</option>
                 <option value="1">Option 1</option>
                 <option value="2">Option 2</option>
                 <option value="3">Option 3</option>
             </select>
-            <label>Type:</label>
         </div>
     </div>
 </div>

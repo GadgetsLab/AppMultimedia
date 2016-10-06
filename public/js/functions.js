@@ -95,5 +95,17 @@ var functions = {
 
             }
         });
+    },
+    login: function(data){
+        j.ajax({
+            url: route + 'login',
+            method: 'POST',
+            data:data,
+            success: function(response){
+                if(response == '1') {
+                    j(location).attr('href', route+'home');
+                }
+            }
+        });
     }
 };

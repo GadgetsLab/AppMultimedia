@@ -33,7 +33,8 @@ if ($app->getContainer()->settings['debug'] === false) {
 
 $app->group('', function() use ($app) {
     $controller = new RDuuke\Newbie\Controllers\HomeController($app);
-    $this->get('/', $controller('index'));
+    $this->get('/', $controller('home'));
+    $this->get('/home', $controller('index'));
     $this->get('/item', $controller('videos'));
     $this->get('/images', $controller('images'));
     $this->get('/contact', $controller('contact'));
@@ -43,6 +44,8 @@ $app->group('', function() use ($app) {
     $this->post('/share', $controller('shareFile'));
     $this->get('/notifications', $controller('notifications'));
     $this->get('/newnotifications', $controller('checkNotifications'));
+    $this->post('/login', $controller('login'));
+    $this->get('/logout', $controller('logout'));
 });
 
 /*$app->get('/text', function () {
