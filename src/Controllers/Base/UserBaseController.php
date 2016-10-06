@@ -22,7 +22,7 @@ class UserBaseController extends Controller
     public function Show($id)
     {
         $user = User::find($id);
-
+        
         return view('admin/users/show', compact('user'));
     }
 
@@ -55,14 +55,5 @@ class UserBaseController extends Controller
         $user = User::find($id);
         $user->delete();
     }
-    
-    public function authFactory()
-    {
-        return new \RDuuke\Newbie\Auth\AuthFactory($_COOKIE);
-    }
 
-    public function authAdapter()
-    {
-        return new \RDuuke\Newbie\Auth\Adapter();
-    }
 }

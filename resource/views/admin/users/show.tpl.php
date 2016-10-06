@@ -1,4 +1,4 @@
-<?php $this->layout('layout/base'); ?>
+<?php $this->layout('layout/base', ['user' => $user]); ?>
 <div class="row">
 	<div class="col s12 m12 l12">
 		<h4 class="n_user">Perfil de: <?= $user->getFullNameAttribute() ?></h4>

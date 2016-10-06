@@ -14,13 +14,13 @@
 <body>
 <ul id="slide-out" class="side-nav">
     <li class="blue lighten-2">
-        <a href="<?= BASE_PUBLIC ?>/admin/users/2" class="waves-effect"><span class="white-text"> <i class="material-icons tiny">person_pin</i>&nbsp; Mi perfil </span></a>
+        <a href="<?= BASE_PUBLIC ?>/admin/users/<?= $user->id ?>" class="waves-effect"><span class="white-text"> <i class="material-icons tiny">person_pin</i>&nbsp; Mi perfil </span></a>
     </li>
     <li class="blue lighten-2">
         <a href="#!email" class="waves-effect"><span class="white-text"><i class="material-icons tiny">cloud</i>&nbsp; Mis Archivos</span></a>
     </li>
     <li class="blue lighten-2">
-        <a href="#!" class="waves-effect"><span class="white-text"><i class="material-icons tiny">input</i>&nbsp; Cerrar sesión</a>
+        <a href="<?= BASE_PUBLIC ?>/logout" class="waves-effect"><span class="white-text"><i class="material-icons tiny">input</i>&nbsp; Cerrar sesión</a>
     </li>
     <li>
         <a class="" href="<?= BASE_PUBLIC ?>/notifications"><i class="material-icons tiny">info</i>&nbsp; Notificaciones <span id="count" class="">2</span></a>
@@ -68,9 +68,8 @@
 </div>
 
 <?php script('js/jquery.min.js')?>
-<?php script('js/chosen.jquery.js');?>
+<?php script('js/chosen.jquery.min.js');?>
 <?php script('js/materialize.min.js')?>
-<?php //script('js/files_filter.js');?>
 <?php script('js/functions.js');?>
 <?php script('js/template.js'); ?>
 

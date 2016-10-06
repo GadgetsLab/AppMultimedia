@@ -1,4 +1,4 @@
-<?php $this->layout('layout/base'); ?>
+<?php $this->layout('layout/base', ['user' => $user]); ?>
 
 <h3>Tus notificaciones</h3>
 <div class="row">

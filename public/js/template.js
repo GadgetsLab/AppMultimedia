@@ -57,8 +57,15 @@ j('#close-modal').on('click', function(){
     functions.close_modal();
 });
 
-j('#report').on('click', function(){
+
+j('#report').on('click', function() {
 
     functions.report_email();
+});
+j('#postLogin').on('click', function(e){
+    e.preventDefault();
+    var data = j('#formLogin').serialize();
+    console.log(data);
+    functions.login(data);
 });
 

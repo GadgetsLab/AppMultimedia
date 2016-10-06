@@ -74,7 +74,7 @@ var functions = {
         });
     },
     open_modal: function(){
-    j('#veil').css('display','block');
+        j('#veil').css('display','block');
     },
     close_modal: function(){
         j('#veil').css('display','none');
@@ -84,14 +84,14 @@ var functions = {
             url: route + 'newnotifications',
             method: 'GET',
             success: function (response) {
-               if(response > 0){
-                   j('#count').html(response);
-                   j('#count').show();
-               }
-               else
-               {
+                if(response > 0){
+                    j('#count').html(response);
+                    j('#count').show();
+                }
+                else
+                {
                     j('#count').hide();
-               }
+                }
 
             }
         });
@@ -101,11 +101,23 @@ var functions = {
             url: route + 'report',
             method: 'GET',
             success: function (response) {
-                if(response === '1'){
+                if (response === '1') {
                     console.log('Todo se realizo');
                 }
-                else{
+                else {
                     console.log('Algo salio mal');
+                }
+            }
+        });
+    },
+    login: function(data){
+        j.ajax({
+            url: route + 'login',
+            method: 'POST',
+            data:data,
+            success: function(response){
+                if(response == '1') {
+                    j(location).attr('href', route+'home');
                 }
             }
         });
