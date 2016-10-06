@@ -10,13 +10,10 @@ use RDuuke\Newbie\Notification;
 
 class HomeController extends Controller
 {
-    protected $auth;
-    protected $auth_factory;
-    protected $adapter;
 
     public function Index()
     {
-        mailer();
+        //mailer();
         $title = 'Didactico repository';
         if (self::checkUser()) {
             $user = (object)$this->auth->getUserData();
@@ -151,19 +148,5 @@ class HomeController extends Controller
         $total = Notification::where('state','1')->count();
         echo $total;
         return true;
-    }
-
-    public function checkUser()
-    {
-        $this->adapter = self::authAdapter();
-        $this->auth_factory = self::authFactory();
-        $auth = $this->auth_factory->newInstance();
-        $resume_service = $this->auth_factory->newResumeService($this->adapter);
-        $resume_service->resume($auth);
-        $this->auth = $auth;
-        if ($auth->isValid()) {
-            return true;
-        }
-        return false;
     }
 }
