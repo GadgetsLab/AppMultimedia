@@ -3,9 +3,9 @@
 function allFiles()
 {
     $all = \RDuuke\Newbie\File::join('formats', 'files.format_id','=','formats.id')
-                            ->join('types','formats.type_id','=','types.id')
-                            ->select('files.id', 'files.title', 'files.description', 'files.url','types.type')
-                            ->get();
+        ->join('types','formats.type_id','=','types.id')
+        ->select('files.id', 'files.title', 'files.description', 'files.url','types.type')
+        ->get();
 
     return $all;
 
@@ -280,4 +280,27 @@ function strRandom($limit = 10)
         return $randomString;
     }
     throw new \Exception('The limit must be a numeric value');
+}
+
+function mailer($from,$message = '', $subject)
+{
+    $email = new PHPMailer;
+    $email->SetFrom($from,'Usuario Aplicacion');
+    $email->AddAddress('reickchozo@gmail','Administrator');
+    $email->Subjetc = $subject;
+    $email->MsgHTML("<h3>Mensaje de Reporte</h3>
+                     <br>
+                     <strong>Asunto:".$subject."</strong>
+                     <br><br>
+                     <p><strong>Menrsaje:</strong>".$message."</p>
+                     <br><strong>Fecha</strong>: ".date('Y-M-D'));
+    try{
+        if($email->Send()){
+            return true;
+        }
+    }
+    catch(\Exception $e){
+        print $e;
+    }
+
 }

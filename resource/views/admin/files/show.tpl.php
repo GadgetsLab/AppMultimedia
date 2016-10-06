@@ -22,11 +22,12 @@
         <a  class="modal-click" href="#">
             <i class="material-icons small deep-purple-text">person_pin</i>
         </a>
-	    <i class="material-icons small red-text right ">report_problem</i>
-
+		<a class="modal-trigger" href="#report">
+	    	<i class="material-icons small red-text right ">report_problem</i>
+		</a>
 </div>
 
-
+	<?php include 'partial/report.tpl.php';?>
 	<?php include 'partial/user_share.tpl.php';?>
 
 

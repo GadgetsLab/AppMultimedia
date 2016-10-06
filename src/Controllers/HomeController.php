@@ -13,6 +13,7 @@ class HomeController extends Controller
 
     public function Index()
     {
+        mailer();
         $title = 'Didactico repository';
 
         return view('home/index', compact('title'));

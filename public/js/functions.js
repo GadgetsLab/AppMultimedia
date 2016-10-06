@@ -95,5 +95,19 @@ var functions = {
 
             }
         });
+    },
+    report_email: function(){
+        j.ajax({
+            url: route + 'report',
+            method: 'GET',
+            success: function (response) {
+                if(response === '1'){
+                    console.log('Todo se realizo');
+                }
+                else{
+                    console.log('Algo salio mal');
+                }
+            }
+        });
     }
 };

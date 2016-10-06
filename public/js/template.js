@@ -57,3 +57,8 @@ j('#close-modal').on('click', function(){
     functions.close_modal();
 });
 
+j('#report').on('click', function(){
+
+    functions.report_email();
+});
+
