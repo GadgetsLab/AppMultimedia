@@ -9,21 +9,27 @@ class UserBaseController extends Controller
 
     public function Index()
     {
-        $users = User::all();
-
-        return view('admin/users/index', compact('users'));
+        if (self::checkUser()) {
+            $user = (object)$this->auth->getUserData();
+            $users = User::all();
+            return view('admin/users/index', compact('users','user'));
+        }
+        return $this->redirect(BASE_PUBLIC,200);
     }
 
     public function Create()
     {
+
         return view('admin/users/create');
     }
 
     public function Show($id)
     {
-        $user = User::find($id);
-        
-        return view('admin/users/show', compact('user'));
+        if(self::checkUser()){
+            $user = User::find($id);
+            return view('admin/users/show', compact('user'));
+        }
+        return $this->redirect(BASE_PUBLIC, 200);
     }
 
     public function Edit($id)

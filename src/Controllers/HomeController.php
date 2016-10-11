@@ -21,7 +21,7 @@ class HomeController extends Controller
             return view('home/index', compact('title', 'user'));
 
         }
-        return $this->redirect(BASE_PUBLIC, 500);
+        return $this->redirect(BASE_PUBLIC, 200);
 
     }
 
@@ -29,11 +29,16 @@ class HomeController extends Controller
     {
         return view('home/login', compact('title'));
     }
+
     public function Videos()
     {
         $title = 'All videos';
 
-        return view('home/item', compact('title'));
+        if (self::checkUser()) {
+            $user = (object)$this->auth->getUserData();
+            return view('home/item', compact('title', 'user'));
+        }
+        return $this->redirect(BASE_PUBLIC, 200);
 
     }
 
@@ -56,15 +61,22 @@ class HomeController extends Controller
     public function Images()
     {
         $title = 'All images';
-
-        return view('home/images', compact('title'));
+        if (self::checkUser()) {
+            $user = (object)$this->auth->getUserData();
+            return view('home/images', compact('title', 'user'));
+        }
+        return $this->redirect(BASE_PUBLIC, 200);
     }
 
     public function Contact()
     {
         $title = 'This is contact';
 
-        return view('home/contact', compact('title'));
+        if (self::checkUser()) {
+            $user = (object)$this->auth->getUserData();
+            return view('home/contact', compact('title', 'user'));
+        }
+        return $this->redirect(BASE_PUBLIC, 200);
     }
 
     public function Fileup()
@@ -79,8 +91,6 @@ class HomeController extends Controller
     {
 
         $comment = Comment::create(self::getPost());
-        $notification = new Notification;
-
         $notification = new Notification;
         $notification->notification_id = $comment->id;
         $notification->type= 'comment';
@@ -105,9 +115,9 @@ class HomeController extends Controller
         if (self::checkUser()) {
             $logout_service = $this->auth_factory->newLogoutService($this->adapter);
             $logout_service->logout($this->auth);
-            return $this->redirect(BASE_PUBLIC, 500);
+            return $this->redirect(BASE_PUBLIC, 200);
         } else {
-            return $this->redirect(BASE_PUBLIC, 500);
+            return $this->redirect(BASE_PUBLIC, 200);
         }
     }
     public function shareFile()
@@ -115,8 +125,7 @@ class HomeController extends Controller
         $data = self::getPost();
         $people_shares = $data['people-share'];
         $file = $data['file'];
-        //print_r($data);
-        //die();
+
         foreach($people_shares as $user){
             $share = new Shared;
             $share->of_who = 2;
@@ -139,8 +148,12 @@ class HomeController extends Controller
 
     public function notifications()
     {
-        $notifications = Notification::all();
-        return view('admin/users/notifications', compact('notifications'));
+        if (self::checkUser()) {
+            $user = (object)$this->auth->getUserData();
+            $notifications = Notification::all();
+            return view('admin/users/notifications', compact('notifications', 'user'));
+        }
+        return $this->redirect(BASE_PUBLIC, 200);
     }
 
     public function checkNotifications()
@@ -148,5 +161,24 @@ class HomeController extends Controller
         $total = Notification::where('state','1')->count();
         echo $total;
         return true;
+    }
+
+    public function report()
+    {
+        self::checkUser();
+        $user = (object) $this->auth->getUserData();
+        $email = $user->email;
+        $data = self::getPost();
+        $type_report = $data['type-report'];
+        $comment = $data['comment'];
+        $file = $data['file'];
+        $send = mailer($email, $comment, $type_report, $file);
+        if($send) {
+            echo '1';
+            return true;
+        }
+        echo '0';
+        return false;
+
     }
 }

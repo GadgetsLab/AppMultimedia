@@ -1,4 +1,4 @@
-<?php $this->layout('layout/base'); ?>
+<?php $this->layout('layout/base', ['user' => $user]); ?>
 <!-- <div class="container">  -->
 	<div class="row"> 
 		<div class="col s8 create_user_btn"> 

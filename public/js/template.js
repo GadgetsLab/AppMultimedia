@@ -19,7 +19,7 @@ $(document).ready(function() {
     //j('#type').val('0');
 
     j('#type').change(function(){
-        //console.log($('#type').val());
+        //console.log(j('#type').val());
         var format = j('#type').val();
         functions.filter(format);
     });
@@ -35,8 +35,6 @@ var j = jQuery.noConflict(true);
 
 j('#sh').on('click', function(){
     var people = j('#compartir').serialize();
-    console.log(people);
-    console.log(j('#people-share').val());
     if(j('#people-share').val() != null) {
         functions.callshare(people);
     }
@@ -58,10 +56,12 @@ j('#close-modal').on('click', function(){
 });
 
 
-j('#report').on('click', function() {
-
-    functions.report_email();
+j('#send-report').on('click', function() {
+    var report = j('#options-report').serialize();
+    //console.log(typeof(report));
+    functions.report_email(report);
 });
+
 j('#postLogin').on('click', function(e){
     e.preventDefault();
     var data = j('#formLogin').serialize();

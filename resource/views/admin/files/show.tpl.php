@@ -1,4 +1,4 @@
-<?php $this->layout('layout/base'); ?>
+<?php $this->layout('layout/base', ['user' => $user]); ?>
 <h4><?= $this->e($file->title); ?></h4>
 <div class="card">
 	<?php include 'partial/'.$type->type.'.tpl.php'; ?>

@@ -46,6 +46,7 @@ $app->group('', function() use ($app) {
     $this->get('/newnotifications', $controller('checkNotifications'));
     $this->post('/login', $controller('login'));
     $this->get('/logout', $controller('logout'));
+    $this->post('/report', $controller('report'));
 });
 
 /*$app->get('/text', function () {
@@ -89,11 +90,8 @@ $app->group('/admin/files', function () use ($app){
         $controller = new RDuuke\Newbie\Controllers\FileController($app);
         $controller->Store($request);
     });
-    $this->get('/{id}', function($request) use ($app){
-        $id = $request->getAttribute('id');
-        $controller = new RDuuke\Newbie\Controllers\FileController($app);
-        $controller->Show($id);
-    });
+    $controller = new RDuuke\Newbie\Controllers\FileController($app);
+    $this->get('/{id}', $controller('show'));
     $this->get('/{id}/edit', function($request) use ($app){
         $id = $request->getAttribute('id');
         $controller = new RDuuke\Newbie\Controllers\FileController($app);

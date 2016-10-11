@@ -1,4 +1,4 @@
-<?php $this->layout('layout/base'); ?>
+<?php $this->layout('layout/base', ['user' => $user]); ?>
 <div class="row"> 
 	<div class="dol s12">
 		<h4 class="text-center">Creación de Usuarios</h4> 		

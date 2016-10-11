@@ -1,4 +1,4 @@
-<?php $this->layout('layout/base'); ?>
+<?php $this->layout('layout/base', ['user' => $user]); ?>
 <br>
 <hr class="blue lighten-3">
 <h5 class="center-align">Contacto con el administrador</h5>

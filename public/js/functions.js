@@ -1,25 +1,29 @@
 var route = "http://localhost:8080/AppMultimedia/public/";
+//var types = [];
 
 var functions = {
 
     filter: function(format) {
-        //console.log(format);
-        $.ajax({
+        j.ajax({
             url: route + 'admin/files/filter/' + format,
             type: 'GET',
             success: function (response) {
                 if (response === '0') {
-                    console.log(response);
+                    j('#files').html('');
                 }
                 else {
-                    $('#files').html('');
+                    j('#files').html('');
                     //console.log(response[0]['title']);
                     //console.log(typeof(response));
                     for (var i in response) {
-                        $('#files').append("<li>" +
-                            "<h3><a href='" + route + "admin/files/" + response[i]['id'] + "'>" + response[i]['title'] + "</a></h3>" +
-                            "<p>Descripcion:" + response[i]['description'] + "</p>" +
-                            "<p>Tipo:" + response[i]['type'] + "</p></li>");
+                        j('#files').append("<tr>" +
+                            "<td>"+ response[i]['id'] +"</td> "+
+                            "<td>"+ response[i]['title'] +"</td>"+
+                            "<td>" + response[i]['description'] + "</td>" +
+                            "<td>" + response[i]['type'] + "</td>" +
+                            "<td><a href='" + route + "admin/files/" + response[i]['id'] + "' ><i class='material-icons tiny'>mode_edit</i></a></td>" +
+                            "<td><a href='"+ route + "admin/files" + response[i]['id'] + "'><i class='material-icons tiny'>delete</i></a></td>" +
+                            "</tr>");
 
                     }
 
@@ -61,7 +65,6 @@ var functions = {
         });
     },
     callshare: function(people){
-        console.log(people);
         j.ajax({
             url: route + 'share',
             method: 'POST',
@@ -96,16 +99,19 @@ var functions = {
             }
         });
     },
-    report_email: function(){
+    report_email: function(report){
         j.ajax({
             url: route + 'report',
-            method: 'GET',
+            method: 'POST',
+            data:report,
             success: function (response) {
                 if (response === '1') {
-                    console.log('Todo se realizo');
+                    Materialize.toast('Su queja ha sido enviada', 3000, 'rounded');
+                    j('#report').closeModal();
                 }
                 else {
-                    console.log('Algo salio mal');
+                    j('#report').closeModal();
+                    Materialize.toast('Whoops, ha ocurrido un error', 3000, 'rounded','blue' );
                 }
             }
         });

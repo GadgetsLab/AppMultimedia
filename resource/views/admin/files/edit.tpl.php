@@ -1,4 +1,4 @@
-<?php $this->layout('layout/base'); ?>
+<?php $this->layout('layout/base', ['user' => $user]); ?>
 <div class="row">
 	<form action="<?= BASE_PUBLIC ?>/admin/files/<?= $file->id ?>" method="post" id="edit_file">
 		<div class="row">

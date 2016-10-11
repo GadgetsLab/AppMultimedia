@@ -282,15 +282,16 @@ function strRandom($limit = 10)
     throw new \Exception('The limit must be a numeric value');
 }
 
-function mailer($from,$message = '', $subject)
+function mailer($from,$message = '', $subject, $file)
 {
     $email = new PHPMailer;
     $email->SetFrom($from,'Usuario Aplicacion');
-    $email->AddAddress('reickchozo@gmail','Administrator');
+    $email->AddAddress('reickchozo@gmail.com','Administrator');
     $email->Subjetc = $subject;
     $email->MsgHTML("<h3>Mensaje de Reporte</h3>
                      <br>
-                     <strong>Asunto:".$subject."</strong>
+                     <strong>Asunto: ".$subject."</strong>
+                     <strong>Archivo: ".$file."</strong>
                      <br><br>
                      <p><strong>Menrsaje:</strong>".$message."</p>
                      <br><strong>Fecha</strong>: ".date('Y-M-D'));

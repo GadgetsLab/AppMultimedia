@@ -17,7 +17,7 @@
                 <td colspan="2">Acciones</td>
             </tr>
         </thead>
-        <tbody>
+        <tbody id="files">
             <?php foreach($files as $file): ?>
                 <tr>
                     <td><?= $file->id ?></td>
