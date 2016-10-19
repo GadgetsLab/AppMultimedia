@@ -85,7 +85,6 @@ class FileBaseController extends Controller
         } else {
             throw new \Exception('Invalid Format');
         }
-        return view('admin/files/result', compact('name'));
     }
 
     public function Update($id, $request)

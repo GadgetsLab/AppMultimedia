@@ -14,10 +14,10 @@
 <body>
 <ul id="slide-out" class="side-nav">
     <li class="blue lighten-2">
-        <a href="<?= BASE_PUBLIC ?>/admin/users/<?= $user->id ?>" class="waves-effect"><span class="white-text"> <i class="material-icons tiny">person_pin</i>&nbsp; Mi perfil </span></a>
+        <a href="<?= BASE_PUBLIC ?>/user/<?= $user->id ?>" class="waves-effect"><span class="white-text"> <i class="material-icons tiny">person_pin</i>&nbsp; Mi perfil </span></a>
     </li>
     <li class="blue lighten-2">
-        <a href="#!email" class="waves-effect"><span class="white-text"><i class="material-icons tiny">cloud</i>&nbsp; Mis Archivos</span></a>
+        <a href="<?= BASE_PUBLIC ?>//user/<?= $user->id?>/files" class="waves-effect"><span class="white-text"><i class="material-icons tiny">cloud</i>&nbsp; Mis Archivos</span></a>
     </li>
     <li class="blue lighten-2">
         <a href="<?= BASE_PUBLIC ?>/logout" class="waves-effect"><span class="white-text"><i class="material-icons tiny">input</i>&nbsp; Cerrar sesión</a>
@@ -48,6 +48,7 @@
     <li>
         <a class="waves-effect" href="#!"><i class="material-icons tiny">perm_device_information</i>&nbsp;  Contacto</a>
     </li>
+    <?php if ($user->rol_id == 1): ?>
     <li class=" grey lighten-3">
         <a class="waves-effect" href="<?= BASE_PUBLIC ?>/admin/users"><i class="material-icons tiny">supervisor_account</i>&nbsp;  Usuarios</a>
     </li>
@@ -57,6 +58,7 @@
     <li class=" grey lighten-3">
         <a class="waves-effect" href="<?= BASE_PUBLIC ?>/admin/files"><i class="material-icons tiny">cloud</i>&nbsp;  Archivos</a>
     </li>
+    <?php endif; ?>
 </ul>
 <div class="navbar-fixed">
     <nav class="blue lighten-3">

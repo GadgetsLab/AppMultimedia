@@ -29,4 +29,8 @@ class User extends Model
     public function rol(){
         return $this->belongsTo('RDuuke\Newbie\Rol');
     }
+    
+    public function files(){
+        return $this->hasMany('RDuuke\Newbie\File');
+    }
 }

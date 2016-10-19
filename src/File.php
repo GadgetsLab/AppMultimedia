@@ -18,5 +18,10 @@ class File extends Model{
         return $this->belongsTo('RDuuke\Newbie\Format');
     }
 
+    public function user()
+    {
+        return $this->belongsTo('RDuuke\Newbie\User', 'user_id');
+    }
+
 
 }

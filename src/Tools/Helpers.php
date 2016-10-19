@@ -1,5 +1,19 @@
 <?php
 
+
+function getNameType($type_id)
+{
+    $name = \RDuuke\Newbie\Type::select('type')->find($type_id);
+    echo $name['type'];
+}
+function countNotifications($user_id)
+{
+    $where = ['notifications.state' => '0', 'shareds.for_who' => $user_id ];
+    $count = \RDuuke\Newbie\Notification::join('shareds', 'notifications.notification_id','=','shareds.id')
+        ->where($where)
+        ->count();
+    return $count;
+}
 function allFiles()
 {
     $all = \RDuuke\Newbie\File::join('formats', 'files.format_id','=','formats.id')

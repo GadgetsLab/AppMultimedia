@@ -38,7 +38,7 @@ class Adapter
         $property = ['email' => $input['username'], 'password' => md5($input['password'])];
         $date = User::where(['email' => $input['username'], 'password' => md5($input['password'])])->get();
         $date = $date->first();
-        $input = ['username' => $date->getFullNameAttribute(), 'rol' => $date->role_id, 'id' => $date->id, 'email' => $date->email ];
+        $input = ['username' => $date->getFullNameAttribute(), 'rol_id' => $date->rol_id, 'id' => $date->id, 'email' => $date->email ];
         return $input;
     }
     public function checkData($input)

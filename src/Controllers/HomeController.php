@@ -5,8 +5,10 @@ namespace RDuuke\Newbie\Controllers;
 
 use MartynBiz\Slim3Controller\Controller;
 use RDuuke\Newbie\Comment;
+use RDuuke\Newbie\File;
 use RDuuke\Newbie\Shared;
 use RDuuke\Newbie\Notification;
+
 
 class HomeController extends Controller
 {
@@ -15,13 +17,7 @@ class HomeController extends Controller
     {
         //mailer();
         $title = 'Didactico repository';
-        if (self::checkUser()) {
-            $user = (object)$this->auth->getUserData();
-            $title = 'Didactico repository';
-            return view('home/index', compact('title', 'user'));
-
-        }
-        return $this->redirect(BASE_PUBLIC, 200);
+        self::Files();
 
     }
 
@@ -30,13 +26,14 @@ class HomeController extends Controller
         return view('home/login', compact('title'));
     }
 
-    public function Videos()
+    public function Files()
     {
         $title = 'All videos';
-
+        
         if (self::checkUser()) {
+            $files = File::all();
             $user = (object)$this->auth->getUserData();
-            return view('home/item', compact('title', 'user'));
+            return view('home/index', compact('title', 'user', 'files'));
         }
         return $this->redirect(BASE_PUBLIC, 200);
 
@@ -158,9 +155,12 @@ class HomeController extends Controller
 
     public function checkNotifications()
     {
-        $total = Notification::where('state','1')->count();
-        echo $total;
-        return true;
+        if (self::checkUser()) {
+            $user = (object)$this->auth->getUserData();
+            $total = countNotifications($user->id);
+            echo $total;
+            return true;
+        }
     }
 
     public function report()

@@ -1,4 +1,7 @@
 <?php $this->layout('layout/base', ['user' => $user ]); ?>
+<div class="col s4 create_user_btn">
+    <?= route('files/create', 'Subir archivo', null, ['class' => 'btn  light-blue darken-3']) ?>
+</div>
 <select name="format" id="type" class="browser-default">
     <option value="" selected disabled>Filtrar por tipos</option>
     <option value="0">Todos</option>
@@ -23,7 +26,7 @@
                     <td><?= $file->id ?></td>
                     <td><?= route('admin/files/'.$file->id, $file->title, null, ['class' => 'my_class']) ?></td>
                     <td><?= $this->e($file->description) ?></td>
-                    <td><?= $this->e($file->type)?></td>
+                    <td><?php getNameType($file->format_id)?></td>
                     <td>
                         <?= route('admin/files/'.$file->id.'/edit', '<i class="material-icons tiny">mode_edit</i>', null, ['class' => 'btn blue']) ?>
                     </td>

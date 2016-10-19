@@ -15,6 +15,6 @@ class Shared extends Model
 {
 
     protected $table = 'shareds';
-    protected $fillable = ['of_who', 'for_who', 'file_id'];
+    protected $fillable = ['of_who', 'for_who', 'file_id', 'id'];
 
 }

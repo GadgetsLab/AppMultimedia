@@ -2,6 +2,7 @@
 namespace RDuuke\Newbie\Controllers\Base;
 
 use MartynBiz\Slim3Controller\Controller;
+use RDuuke\Newbie\File;
 use RDuuke\Newbie\User;
 
 class UserBaseController extends Controller
@@ -27,7 +28,8 @@ class UserBaseController extends Controller
     {
         if(self::checkUser()){
             $user = User::find($id);
-            return view('admin/users/show', compact('user'));
+            $total_post = $user->files->count();
+            return view('admin/users/show', compact('user', 'total_post'));
         }
         return $this->redirect(BASE_PUBLIC, 200);
     }
