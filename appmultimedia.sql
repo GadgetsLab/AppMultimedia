@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.14
+-- version 4.3.11
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-10-2016 a las 16:52:16
--- Versión del servidor: 5.6.26
--- Versión de PHP: 5.6.12
+-- Tiempo de generación: 05-11-2016 a las 02:17:01
+-- Versión del servidor: 5.6.24
+-- Versión de PHP: 5.6.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Base de datos: `appmultimedia`
@@ -28,12 +28,22 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `comments` (
   `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
+  `of_who` int(11) NOT NULL,
+  `for_who` int(11) NOT NULL,
   `file_id` int(11) NOT NULL,
   `comment` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `comments`
+--
+
+INSERT INTO `comments` (`id`, `of_who`, `for_who`, `file_id`, `comment`, `created_at`, `updated_at`) VALUES
+(8, 2, 8, 2, 'Comentario desde la cuenta de Daniel al archivo de Gustavo', '2016-11-05 04:50:44', '2016-11-05 04:50:44'),
+(9, 2, 8, 2, 'otro comenario más', '2016-11-05 04:52:50', '2016-11-05 04:52:50'),
+(10, 2, 8, 2, 'Otro ejemplo más', '2016-11-05 04:54:51', '2016-11-05 04:54:51');
 
 -- --------------------------------------------------------
 
@@ -52,15 +62,15 @@ CREATE TABLE IF NOT EXISTS `files` (
   `materia_id` int(11) NOT NULL DEFAULT '1',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='/*\r\n Tabla donde se albergaran la informacion de los archivos\r\n*/';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='/*\r\n Tabla donde se albergaran la informacion de los archivos\r\n*/';
 
 --
 -- Volcado de datos para la tabla `files`
 --
 
 INSERT INTO `files` (`id`, `title`, `description`, `url`, `status`, `format_id`, `user_id`, `materia_id`, `created_at`, `updated_at`) VALUES
-(2, 'Imagen de Prueba', 'Esta imagen es de prueba', '1\\images\\Thu-Sep-2016_04_54_12647233_959467427424298_2239910232197446568_n.jpg', 1, 2, 2, 1, '2016-09-29 09:07:54', '2016-09-29 09:07:54'),
-(3, 'Archivo heavy', 'Archivo de Kirby Heavy', '1\\documents\\Mon-Oct-2016_10_11_Kirby - Planet robobot  [.CIA] [EUR] [RegionFree].docx', 1, 5, 2, 1, '2016-10-04 03:36:12', '2016-10-04 03:36:12');
+(1, 'Archivo de Daniel', 'Ejemplo del archivo de Juan', '1\\images\\Wed-Oct-2016_11_30_799c487b04d57e953c5ab2948f75dd6b.jpg', 1, 2, 2, 1, '2016-10-20 04:22:30', '2016-11-04 18:32:18'),
+(2, 'Archivo de Gustavol', 'Una caja d cerveza', '1\\images\\Thu-Oct-2016_01_06_10413_10207201566750005_1791098190181390611_n.jpg', 1, 2, 8, 1, '2016-10-20 06:15:06', '2016-11-04 22:46:23');
 
 -- --------------------------------------------------------
 
@@ -103,19 +113,24 @@ INSERT INTO `formats` (`id`, `name`, `description`, `type_id`, `created_at`, `up
 CREATE TABLE IF NOT EXISTS `notifications` (
   `id` int(11) NOT NULL,
   `notification_id` int(11) NOT NULL,
-  `state` varchar(5) COLLATE utf8_unicode_ci NOT NULL DEFAULT '1',
+  `state` varchar(5) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
   `type` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `notifications`
 --
 
 INSERT INTO `notifications` (`id`, `notification_id`, `state`, `type`, `created_at`, `updated_at`) VALUES
-(1, 9, '1', 'shared', '2016-10-04 02:45:43', '2016-10-03 19:56:55'),
-(2, 10, '0', 'shared', '2016-10-04 02:45:44', '2016-10-03 21:16:42');
+(4, 2, '1', 'shared', '2016-10-20 04:22:52', '2016-11-05 04:09:36'),
+(7, 4, '1', 'comment', '2016-11-05 03:06:18', '2016-11-05 04:09:41'),
+(11, 8, '1', 'comment', '2016-11-05 04:50:44', '2016-11-05 05:01:28'),
+(12, 9, '1', 'comment', '2016-11-05 04:52:50', '2016-11-05 05:02:15'),
+(13, 10, '1', 'comment', '2016-11-05 04:54:51', '2016-11-05 05:05:35'),
+(14, 3, '0', 'shared', '2016-11-05 06:41:42', '2016-11-05 06:41:42'),
+(15, 4, '0', 'shared', '2016-11-05 06:41:43', '2016-11-05 06:41:43');
 
 -- --------------------------------------------------------
 
@@ -153,23 +168,15 @@ CREATE TABLE IF NOT EXISTS `shareds` (
   `file_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='This table has data related with the commentaries';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='This table has data related with the commentaries';
 
 --
 -- Volcado de datos para la tabla `shareds`
 --
 
 INSERT INTO `shareds` (`id`, `of_who`, `for_who`, `file_id`, `created_at`, `updated_at`) VALUES
-(1, 2, 8, 2, '2016-10-01 11:18:34', '2016-10-01 11:18:35'),
-(2, 2, 8, 2, '2016-10-01 11:20:43', '2016-10-01 11:20:43'),
-(3, 2, 2, 2, '2016-10-01 11:24:33', '2016-10-01 11:24:33'),
-(4, 2, 7, 2, '2016-10-01 11:24:34', '2016-10-01 11:24:34'),
-(5, 2, 8, 2, '2016-10-01 11:24:34', '2016-10-01 11:24:34'),
-(6, 2, 2, 2, '2016-10-04 02:40:21', '2016-10-04 02:40:21'),
-(7, 2, 2, 2, '2016-10-04 02:40:57', '2016-10-04 02:40:57'),
-(8, 2, 2, 2, '2016-10-04 02:43:40', '2016-10-04 02:43:40'),
-(9, 2, 2, 2, '2016-10-04 02:45:43', '2016-10-04 02:45:43'),
-(10, 2, 8, 2, '2016-10-04 02:45:43', '2016-10-04 02:45:43');
+(2, 2, 2, 1, '2016-10-20 04:22:49', '2016-10-19 21:37:20'),
+(4, 2, 8, 1, '2016-11-05 06:41:42', '2016-11-05 06:41:42');
 
 -- --------------------------------------------------------
 
@@ -225,25 +232,19 @@ INSERT INTO `users` (`id`, `names`, `last_names`, `email`, `password`, `rol_id`,
 -- Indices de la tabla `comments`
 --
 ALTER TABLE `comments`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `FK_comments_files` (`file_id`),
-  ADD KEY `FK_comments_users` (`user_id`);
+  ADD PRIMARY KEY (`id`), ADD KEY `FK_comments_files` (`file_id`), ADD KEY `FK_comments_users` (`of_who`);
 
 --
 -- Indices de la tabla `files`
 --
 ALTER TABLE `files`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `FK__format` (`format_id`),
-  ADD KEY `FK__users` (`user_id`);
+  ADD PRIMARY KEY (`id`), ADD KEY `FK__format` (`format_id`), ADD KEY `FK__users` (`user_id`);
 
 --
 -- Indices de la tabla `formats`
 --
 ALTER TABLE `formats`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `UNIQUE NAME` (`name`),
-  ADD KEY `FK_type` (`type_id`);
+  ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `UNIQUE NAME` (`name`), ADD KEY `FK_type` (`type_id`);
 
 --
 -- Indices de la tabla `notifications`
@@ -255,16 +256,13 @@ ALTER TABLE `notifications`
 -- Indices de la tabla `rols`
 --
 ALTER TABLE `rols`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `NAME UNIQUE` (`name`);
+  ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `NAME UNIQUE` (`name`);
 
 --
 -- Indices de la tabla `shareds`
 --
 ALTER TABLE `shareds`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `FK_user` (`of_who`),
-  ADD KEY `FK_file` (`file_id`);
+  ADD PRIMARY KEY (`id`), ADD KEY `FK_user` (`of_who`), ADD KEY `FK_file` (`file_id`);
 
 --
 -- Indices de la tabla `types`
@@ -276,9 +274,7 @@ ALTER TABLE `types`
 -- Indices de la tabla `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `EMAIL UNIQUE` (`email`),
-  ADD KEY `FK_users_roles` (`rol_id`);
+  ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `EMAIL UNIQUE` (`email`), ADD KEY `FK_users_roles` (`rol_id`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
@@ -288,12 +284,12 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de la tabla `files`
 --
 ALTER TABLE `files`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `formats`
 --
@@ -303,7 +299,7 @@ ALTER TABLE `formats`
 -- AUTO_INCREMENT de la tabla `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT de la tabla `rols`
 --
@@ -313,7 +309,7 @@ ALTER TABLE `rols`
 -- AUTO_INCREMENT de la tabla `shareds`
 --
 ALTER TABLE `shareds`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT de la tabla `types`
 --
@@ -332,34 +328,33 @@ ALTER TABLE `users`
 -- Filtros para la tabla `comments`
 --
 ALTER TABLE `comments`
-  ADD CONSTRAINT `FK_comments_files` FOREIGN KEY (`file_id`) REFERENCES `files` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_comments_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `FK_comments_files` FOREIGN KEY (`file_id`) REFERENCES `files` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `files`
 --
 ALTER TABLE `files`
-  ADD CONSTRAINT `FK__format` FOREIGN KEY (`format_id`) REFERENCES `formats` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK__users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `FK__format` FOREIGN KEY (`format_id`) REFERENCES `formats` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `FK__users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `formats`
 --
 ALTER TABLE `formats`
-  ADD CONSTRAINT `FK_type` FOREIGN KEY (`type_id`) REFERENCES `types` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `FK_type` FOREIGN KEY (`type_id`) REFERENCES `types` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `shareds`
 --
 ALTER TABLE `shareds`
-  ADD CONSTRAINT `FK_file` FOREIGN KEY (`file_id`) REFERENCES `files` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `FK_user` FOREIGN KEY (`of_who`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `FK_file` FOREIGN KEY (`file_id`) REFERENCES `files` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `FK_user` FOREIGN KEY (`of_who`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `users`
 --
 ALTER TABLE `users`
-  ADD CONSTRAINT `FK_users_roles` FOREIGN KEY (`rol_id`) REFERENCES `rols` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `FK_users_roles` FOREIGN KEY (`rol_id`) REFERENCES `rols` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
