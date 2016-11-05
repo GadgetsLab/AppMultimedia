@@ -43,9 +43,7 @@ class UserBaseController extends Controller
 
     public function Store()
     {
-        echo '<pre>';
         $request = self::getPost();
-        print_r($request);
         User::create($request);
 
     }

@@ -105,7 +105,8 @@ img.materialboxed.center.initialized {
     height: 300px;
     margin: 6em auto;
     padding: 1em 2em;
-    width: 800px;
+    max-width: 800px;
+    width: 100%;
     z-index:6;
 }
 .text-white
@@ -115,4 +116,11 @@ img.materialboxed.center.initialized {
 
 .uppercase-text{
     text-transform: uppercase;
+}
+
+#compartir
+{
+    height: 100px;
+    overflow-y: scroll;
+    margin-bottom: 10px;
 }

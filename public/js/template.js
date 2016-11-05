@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    functions.allcomments();
+
     functions.checkNotifications();
     j(".button-collapse").sideNav();
     j('.materialboxed').materialbox();
@@ -25,7 +25,10 @@ $(document).ready(function() {
     });
     j('#addComment').on('click', function () {
         var data = j('#formComment').serialize();
-        functions.comment(data);
+        functions.comment(data)
+        var id = j('#file_id').val();
+        functions.allcomments(id);
+        j("#comment").closeModal();
     })
 });
 var j = jQuery.noConflict(true);
@@ -35,13 +38,12 @@ var j = jQuery.noConflict(true);
 
 j('#sh').on('click', function(){
     var people = j('#compartir').serialize();
-    if(j('#people-share').val() != null) {
+    var input = j('#compartir input:checkbox').length;
+    if (input > 0) {
         functions.callshare(people);
+    }else{
+        j('.error').css('display', 'block');
     }
-    else{
-        j('.error').css('display','block');
-    }
-
 });
 
 j('.modal-click').on('click', function() {
@@ -68,4 +70,10 @@ j('#postLogin').on('click', function(e){
     console.log(data);
     functions.login(data);
 });
-
+j(".notification_link").on('click', function (e) {
+    e.preventDefault()
+    var id = j(this).attr('data_id');
+    functions.updateStatusNotification(id)
+    console.log('entro');
+    window.location = j(this)[0].href;
+})  

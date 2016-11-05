@@ -1,27 +1,27 @@
 <div id="veil">
     <div id="modal-d">
-        <h2>Compartir</h2>
+        <h5>Compartir</h5>
         <form id="compartir">
-            <select  id="people-share" class="select-chosen browser-default" name="people-share[]" multiple data-placeholder="Contactos para compartir">
                 <?php foreach($users as $user): ?>
-                    <option value="<?= $this->e($user->id) ?>"> <?=$this->e($user->names)?>&nbsp; <?= $this->e($user->lastnames) ?></option>
+                    <input type="checkbox" id="cbox<?= $this->e($user->id) ?>" name="people-share[]" value="<?= $this->e($user->id) ?>" />
+                    <label for="cbox<?= $this->e($user->id) ?>" style="margin-right: 10px;"><?= $this->e($user->getFullNameAttribute()) ?></label>
                 <?php endforeach ?>
-            </select>
             <input type="hidden" name="file" value="<?= $this->e($file->id) ?>">
         </form>
-        <br><br>
         <div class="row">
             <div class="col s12">
                 <div class="chip error text-white danger" style="display:none">
                     Debes seleccionar minimo a una persona
                     <i class="close material-icons">close</i>
                 </div>
-            </div> <br>
-            <div class="col s4">
-                <button id="sh" class="btn">Compartir</button>
             </div>
-            <div class="col s4">
-                <button id="close-modal" class="btn lime darken-1">Cancelar</button>
+            <br>
+            <br>
+            <div class="col s6">
+                <a id="sh" class="btn-flat blue text-white">Compartir</a>
+            </div>
+            <div class="col s6">
+                <a id="close-modal" class="btn-flat blue darken-1 text-white">Cancelar</a>
             </div>
         </div>
     </div>

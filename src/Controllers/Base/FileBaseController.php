@@ -29,6 +29,7 @@ class FileBaseController extends Controller
     }
     public function Show($id)
     {
+
         if (self::checkUser()) {
             $user = (object)$this->auth->getUserData();
             $file = File::find($id);
@@ -166,5 +167,4 @@ class FileBaseController extends Controller
         print_r($data);
         die();
     }
-
 }

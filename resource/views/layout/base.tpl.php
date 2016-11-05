@@ -62,8 +62,8 @@
 </ul>
 <div class="navbar-fixed">
     <nav class="blue lighten-3">
-        <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
-        <a href="<?= BASE_PUBLIC ?>" class="brand-logo thin">Didactic repository</a>
+        <a href="#" data-activates="slide-out" class="button-collapse" style="display: block"><i class="material-icons">menu</i></a>
+        <a href="<?= BASE_PUBLIC ?>/home" class="brand-logo thin">Didactic repository</a>
     </nav>
 </div>
 <div class="container">

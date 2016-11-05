@@ -28,23 +28,7 @@
             </div>
         </div>
         <hr>
-        <div id="comment" class="modal">
-            <div class="modal-content">
-                <h5 class="thin">Agrega tu opinión</h5>
-                <hr class="blue">
-                <form id="formComment">
-                    <div class="row">
-                        <div class="input-field col s12 m12 l12">
-                            <textarea name="comment" id="textarea1" cols="30" rows="10" class="materialize-textarea"></textarea>
-                            <label for="textarea1">Comentario....</label>
-                            <input type="hidden" name="user_id" value="8">
-                            <input type="hidden" name="file_id" value="3">
-                        </div>
-                        <a href="#!" id="addComment" class="btn blue darken-4 white-text btn-flat ">Enviar</a>
-                    </div>
-                </form>
-            </div>
-        </div>
+       
         <h4>Comentarios</h4>
         <hr>
         <ul id="allComments" class="collection">

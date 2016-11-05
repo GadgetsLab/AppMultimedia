@@ -39,24 +39,22 @@ var functions = {
         }).done(function(response){
             console.log(response);
             if (response == '1') {
-                Materialize.toast('Comentario agregado correctamente', 5000, 'blue');
-                functions.allcomments();
-
+                //Materialize.toast('Comentario agregado correctamente', 5000, 'blue');
             }
         });
     },
-    allcomments: function() {
+    allcomments: function(id) {
         j.ajax({
-            url: route + 'comments',
+            url: route + 'comments/' + id,
             method: 'get'
         }).done( function(response){
             j('#allComments').html('');
             var count = Object.keys(response).length;
             if (count > 0 ){
                 for (var i in response) {
-                    var comments =  "<li class='collection-item'><p>"+response[i]['comment']+"<a href="+route+"/admin/users/"+response[i]['id']+">"+
+                    var comments =  "<li class='collection-item'><p>"+response[i]['comment']+"<a style='float: left;'>"+
                         "<span class='badge  light-blue ' style='color: #fff; position: relative;margin-left: 15px;'>" +
-                        ""+ response[i]['names'] +"</span></a></p></li>"
+                        ""+ response[i]['names'] +" dice:</span></a></p></li>"
                     j('#allComments').append(comments);
                 }
             } else {
@@ -90,9 +88,11 @@ var functions = {
                 if(response > 0){
                     j('#count').html(response);
                     j('#count').show();
+                    j('.button-collapse').css('background', 'tomato');
                 }
                 else
                 {
+                    j('.button-collapse').css('background', 'transparent');
                     j('#count').hide();
                 }
 
@@ -127,5 +127,14 @@ var functions = {
                 }
             }
         });
+    },
+    updateStatusNotification: function (id) {
+        j.ajax({
+            url: route + 'notification/update',
+            method: 'POST',
+            data: {'id': id}
+        }).done( function (response){
+            return true;
+        })
     }
 };

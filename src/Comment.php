@@ -10,7 +10,7 @@ class Comment extends Model
 
     protected $table = 'comments';
 
-    protected $fillable = ['comment', 'user_id', 'file_id'];
+    protected $fillable = ['comment', 'for_who', 'file_id', 'of_who'];
 
     protected $hidden = ['created_at', 'updated_at'];
 

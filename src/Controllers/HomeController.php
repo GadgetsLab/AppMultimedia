@@ -29,7 +29,7 @@ class HomeController extends Controller
     public function Files()
     {
         $title = 'All videos';
-        
+
         if (self::checkUser()) {
             $files = File::all();
             $user = (object)$this->auth->getUserData();
@@ -96,10 +96,11 @@ class HomeController extends Controller
         return true;
     }
 
-    public function allComments()
+    public function allComments($id)
     {
-        $allComments = Comment::join('users', 'comments.user_id', '=', 'users.id')
+        $allComments = Comment::join('users', 'comments.of_who', '=', 'users.id')
             ->select('users.names', 'users.last_names', 'comments.comment', 'comments.created_at', 'users.id')
+            ->where(['comments.file_id' => $id])
             ->limit(10)
             ->get();
         header("Content-type:appliaction/json");
@@ -153,6 +154,14 @@ class HomeController extends Controller
         return $this->redirect(BASE_PUBLIC, 200);
     }
 
+    public function notification_update()
+    {
+        $data = self::getPost();
+        $where = ['notification_id' => $data['id']];
+        Notification::where($where)->update(['state' => 1]);
+        return true;
+    }
+
     public function checkNotifications()
     {
         if (self::checkUser()) {
@@ -162,7 +171,6 @@ class HomeController extends Controller
             return true;
         }
     }
-
     public function report()
     {
         self::checkUser();

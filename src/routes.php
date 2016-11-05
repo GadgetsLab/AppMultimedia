@@ -49,13 +49,14 @@ $app->group('', function() use ($app) {
     $this->get('/contact', $controller('contact'));
     $this->get('/fileup', $controller('fileup'));
     $this->post('/comments', $controller('addComments'));
-    $this->get('/comments', $controller('allComments'));
+    $this->get('/comments/{id}', $controller('allComments'));
     $this->post('/share', $controller('shareFile'));
     $this->get('/notifications', $controller('notifications'));
     $this->get('/newnotifications', $controller('checkNotifications'));
     $this->post('/login', $controller('login'));
     $this->get('/logout', $controller('logout'));
     $this->post('/report', $controller('report'));
+    $this->post('/notification/update', $controller('notification_update'));
 });
 
 /*$app->get('/text', function () {

@@ -21,4 +21,8 @@ class Notification extends Model
         return $this->belongsTo('RDuuke\Newbie\Shared', 'notification_id');
     }
 
+    public function  comment(){
+        return $this->belongsTo('RDuuke\Newbie\Comment', 'notification_id');
+    }
+
 }

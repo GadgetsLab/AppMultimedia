@@ -12,7 +12,11 @@ function countNotifications($user_id)
     $count = \RDuuke\Newbie\Notification::join('shareds', 'notifications.notification_id','=','shareds.id')
         ->where($where)
         ->count();
-    return $count;
+    $where = ['notifications.state' => '0', 'comments.for_who' => $user_id ];
+    $count_ = \RDuuke\Newbie\Notification::join('comments', 'notifications.notification_id','=','comments.id')
+        ->where($where)
+        ->count();
+    return $count + $count_;
 }
 function allFiles()
 {

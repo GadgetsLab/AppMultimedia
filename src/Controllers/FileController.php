@@ -3,17 +3,29 @@ namespace RDuuke\Newbie\Controllers;
 
 use RDuuke\Newbie\Controllers\Base\FileBaseController;
 use RDuuke\Newbie\File;
+use RDuuke\Newbie\User;
 
 class FileController extends FileBaseController
 {
     public function Index($id)
     {
-        if (self::checkUser()) {
-            $user = (object)$this->auth->getUserData();
-            $files = File::all();
+        //if (self::checkUser()) {
+           // $user = (object)$this->auth->getUserData();
+            $user = User::find($id);
+            $total = File::all();
+            $total = function ($id) use ($total) {
+                $files = [];
+                foreach ($total as $file) {
+                    if ($file->user_id == $id){
+                        array_push($files, $file);
+                    }
+                }
+                return $files;
+            };
+            $files = $total($id);
             return view('admin/files/index', compact('files', 'user'));
-        }
-        return $this->redirect(BASE_PUBLIC, 500);
+        //}
+        //return $this->redirect(BASE_PUBLIC, 500);
     }
 
     public function Store($request)
