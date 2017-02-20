@@ -106,12 +106,12 @@ var functions = {
             data:report,
             success: function (response) {
                 if (response === '1') {
-                    Materialize.toast('Su queja ha sido enviada', 3000, 'rounded');
+                    //Materialize.toast('Su queja ha sido enviada', 3000, 'rounded');
                     j('#report').closeModal();
                 }
                 else {
                     j('#report').closeModal();
-                    Materialize.toast('Whoops, ha ocurrido un error', 3000, 'rounded','blue' );
+                    //Materialize.toast('Whoops, ha ocurrido un error', 3000, 'rounded','blue' );
                 }
             }
         });

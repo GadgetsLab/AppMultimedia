@@ -3,11 +3,12 @@
 <div class="col s12 m4 l6 offset-s4 offset-l3 center-align">
     <div class="row">
         <div class="input-field col s12">
-            <select class="browser-default">
-                <option value="" disabled>Choose your option</option>
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-                <option value="3">Option 3</option>
+            <label for="filter-home">Filtro de archivos</label><br>
+            <select class="browser-default" id="filter-home">
+                <option value="" selected disabled>Elija una opción</option>
+                <option value="1">Documentos</option>
+                <option value="2">Imagenes</option>
+                <option value="3">Videos</option>
             </select>
         </div>
     </div>
